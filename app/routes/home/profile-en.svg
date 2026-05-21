@@ -1,43 +1,51 @@
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
   <defs>
-    <symbol id="profile-en" viewBox="0 0 136 766">
-      <!-- Decorative top dot -->
-      <circle cx="68" cy="18" r="5" fill="currentColor" opacity="0.5"/>
-      <line x1="68" y1="28" x2="68" y2="48" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+    <symbol id="profile-en" viewBox="0 0 80 760">
 
-      <!-- Main vertical name text -->
+      <!-- Top dot + line -->
+      <circle cx="40" cy="12" r="4" fill="currentColor" opacity="0.6"/>
+      <line x1="40" y1="20" x2="40" y2="44" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+
+      <!-- ANIKET — bold vertical text -->
       <text
-        x="68"
-        y="58"
+        x="40"
+        y="52"
         writing-mode="vertical-rl"
         text-anchor="start"
-        font-family="'Inter', 'Gotham', system-ui, sans-serif"
-        font-size="58"
-        font-weight="800"
-        letter-spacing="10"
+        font-family="'Gotham', 'Inter', 'Arial Black', system-ui, sans-serif"
+        font-size="52"
+        font-weight="900"
+        letter-spacing="14"
         fill="currentColor"
+        stroke="currentColor"
+        stroke-width="1"
+        paint-order="stroke fill"
       >ANIKET</text>
 
       <!-- Separator -->
-      <line x1="28" y1="472" x2="108" y2="472" stroke="currentColor" stroke-width="1" opacity="0.25"/>
+      <line x1="10" y1="488" x2="70" y2="488" stroke="currentColor" stroke-width="1" opacity="0.3"/>
 
-      <!-- Sub text -->
+      <!-- ADHAV — lighter below -->
       <text
-        x="68"
-        y="486"
+        x="40"
+        y="502"
         writing-mode="vertical-rl"
         text-anchor="start"
-        font-family="'Inter', 'Gotham', system-ui, sans-serif"
-        font-size="58"
-        font-weight="800"
-        letter-spacing="10"
+        font-family="'Gotham', 'Inter', 'Arial Black', system-ui, sans-serif"
+        font-size="52"
+        font-weight="900"
+        letter-spacing="14"
         fill="currentColor"
-        opacity="0.35"
+        stroke="currentColor"
+        stroke-width="0.5"
+        paint-order="stroke fill"
+        opacity="0.28"
       >ADHAV</text>
 
-      <!-- Decorative bottom line + dot -->
-      <line x1="68" y1="738" x2="68" y2="752" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
-      <circle cx="68" cy="758" r="4" fill="currentColor" opacity="0.5"/>
+      <!-- Bottom line + dot -->
+      <line x1="40" y1="736" x2="40" y2="750" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+      <circle cx="40" cy="756" r="4" fill="currentColor" opacity="0.6"/>
+
     </symbol>
   </defs>
 </svg>
