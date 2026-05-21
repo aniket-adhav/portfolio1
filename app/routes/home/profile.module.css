@@ -346,6 +346,45 @@
               inset 0 0 20px color-mix(in lab, var(--primary) 12%, transparent);
 }
 
+/* ── Hover state on the whole image wrapper ── */
+.imageWrap:hover .photo {
+  filter: brightness(1.05) contrast(1.06) saturate(1.15);
+  transform: scale(1.03);
+  box-shadow:
+    0 0 0 4px color-mix(in lab, var(--primary) 55%, transparent),
+    0 28px 72px color-mix(in lab, var(--primary) 30%, transparent),
+    0 10px 32px rgba(0, 0, 0, 0.4);
+}
+
+.imageWrap:hover .glowOrb {
+  opacity: 1;
+  animation-play-state: paused;
+  transform: translate(-50%, -50%) scale(1.25);
+}
+
+.imageWrap:hover .borderRing {
+  animation-duration: 5s;
+  border-color: color-mix(in lab, var(--primary) 65%, transparent);
+}
+
+.imageWrap:hover .badge {
+  transform: translateX(-50%) translateY(-4px);
+  box-shadow:
+    0 14px 40px color-mix(in lab, var(--primary) 35%, transparent),
+    0 4px 12px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 color-mix(in lab, var(--primary) 35%, transparent);
+  border-color: color-mix(in lab, var(--primary) 70%, transparent);
+}
+
+.imageWrap:hover .p1,
+.imageWrap:hover .p2,
+.imageWrap:hover .p3,
+.imageWrap:hover .p4,
+.imageWrap:hover .p5 {
+  animation-duration: 2s;
+  opacity: 1;
+}
+
 /* ── Floating particles ── */
 .p1, .p2, .p3, .p4, .p5 {
   position: absolute;
@@ -413,6 +452,9 @@
     0 0 0 3px color-mix(in lab, var(--primary) 30%, transparent),
     0 20px 60px color-mix(in lab, var(--primary) 20%, transparent),
     0 8px 24px rgba(0, 0, 0, 0.3);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1),
+              filter 0.35s ease,
+              box-shadow 0.35s ease;
 
   @media (prefers-color-scheme: dark) {
     filter: brightness(1.12) contrast(1.03) saturate(1.1);
@@ -506,38 +548,47 @@
 
 .badge {
   position: absolute;
-  bottom: -36px;
+  bottom: -44px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  background: color-mix(in lab, var(--background) 78%, var(--primary));
+  gap: 5px;
+  background: color-mix(in lab, var(--background) 80%, var(--primary));
   border: 1px solid color-mix(in lab, var(--primary) 50%, transparent);
-  border-radius: 14px;
-  padding: 12px 28px;
+  border-radius: 16px;
+  padding: 14px 32px;
   white-space: nowrap;
-  backdrop-filter: blur(18px);
+  backdrop-filter: blur(20px);
   box-shadow:
     0 8px 32px color-mix(in lab, var(--primary) 22%, transparent),
     0 2px 8px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 color-mix(in lab, var(--primary) 25%, transparent);
   z-index: 6;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.35s ease,
+              border-color 0.35s ease;
 }
 
 .badgeName {
-  font-size: var(--fontSizeBodyL);
+  font-size: 18px;
   font-weight: var(--fontWeightBold);
   color: var(--textTitle);
-  letter-spacing: 0.03em;
+  letter-spacing: 0.04em;
+  line-height: 1.2;
+  text-align: center;
 }
 
 .badgeRole {
-  font-size: var(--fontSizeBodyS);
+  font-size: 11px;
   font-weight: var(--fontWeightMedium);
   color: var(--primary);
-  letter-spacing: 0.07em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0;
 }
 
 /* ── Live dot indicator on badge ── */
@@ -548,6 +599,7 @@
   background: #22c55e;
   display: inline-block;
   margin-right: 6px;
+  flex-shrink: 0;
   animation: dot-pulse 2s ease-in-out infinite;
   box-shadow: 0 0 6px rgba(34, 197, 94, 0.6);
 }
