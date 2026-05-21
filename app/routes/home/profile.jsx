@@ -1,37 +1,72 @@
-import profileImgLarge from '~/assets/profile-large.jpg';
-import profileImgPlaceholder from '~/assets/profile-placeholder.jpg';
-import profileImg from '~/assets/profile.jpg';
 import { Button } from '~/components/button';
 import { DecoderText } from '~/components/decoder-text';
 import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
-import { Image } from '~/components/image';
-import { Link } from '~/components/link';
 import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { Fragment, useState } from 'react';
-import { media } from '~/utils/style';
-import katakana from './katakana.svg';
 import styles from './profile.module.css';
 
 const ProfileText = ({ visible, titleId }) => (
   <Fragment>
     <Heading className={styles.title} data-visible={visible} level={3} id={titleId}>
-      <DecoderText text="Hi there" start={visible} delay={500} />
+      <DecoderText text="Hi, I'm Aniket" start={visible} delay={500} />
     </Heading>
+
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I'm Aniket, a full stack web and Android developer passionate about building
-      fast, scalable, and user-friendly applications. My work spans everything from
-      responsive web apps using React and Node.js to native Android experiences.
-      If you're curious about the tools and software I use, check out my{' '}
-      <Link href="/uses">uses page</Link>.
+      A passionate <strong>Full Stack Web &amp; Android Developer</strong> who loves building
+      fast, scalable, and user-friendly applications. I craft everything from responsive
+      web apps with React and Node.js to polished native Android experiences with Kotlin
+      and Jetpack Compose.
     </Text>
+
     <Text className={styles.description} data-visible={visible} size="l" as="p">
-      I enjoy exploring new technologies, contributing to open source, and solving
-      real-world problems through clean, maintainable code. I'm always open to
-      hearing about new projects, so feel free to drop me a line.
+      I thrive on competitive programming, open-source contributions, and turning
+      real-world problems into clean, maintainable code. Always eager to learn,
+      collaborate, and ship products that matter.
     </Text>
+
+    <div className={styles.infoGrid} data-visible={visible}>
+      <div className={styles.infoCard}>
+        <span className={styles.infoIcon}>🎓</span>
+        <div>
+          <div className={styles.infoLabel}>Education</div>
+          <div className={styles.infoValue}>B.Tech Computer Science</div>
+        </div>
+      </div>
+      <div className={styles.infoCard}>
+        <span className={styles.infoIcon}>📍</span>
+        <div>
+          <div className={styles.infoLabel}>Location</div>
+          <div className={styles.infoValue}>Maharashtra, India</div>
+        </div>
+      </div>
+      <div className={styles.infoCard}>
+        <span className={styles.infoIcon}>💻</span>
+        <div>
+          <div className={styles.infoLabel}>Focus</div>
+          <div className={styles.infoValue}>Web &amp; Android Dev</div>
+        </div>
+      </div>
+      <div className={styles.infoCard}>
+        <span className={styles.infoIcon}>🏆</span>
+        <div>
+          <div className={styles.infoLabel}>LeetCode</div>
+          <div className={styles.infoValue}>1800+ Rating</div>
+        </div>
+      </div>
+    </div>
+
+    <Button
+      secondary
+      className={styles.button}
+      data-visible={visible}
+      href="/contact"
+      icon="send"
+    >
+      Send me a message
+    </Button>
   </Fragment>
 );
 
@@ -53,18 +88,8 @@ export const Profile = ({ id, visible, sectionRef }) => {
       <Transition in={visible || focused} timeout={0}>
         {({ visible, nodeRef }) => (
           <div className={styles.content} ref={nodeRef}>
-            <div className={styles.column}>
-              <ProfileText visible={visible} titleId={titleId} />
-              <Button
-                secondary
-                className={styles.button}
-                data-visible={visible}
-                href="/contact"
-                icon="send"
-              >
-                Send me a message
-              </Button>
-            </div>
+
+            {/* ── Left: text ── */}
             <div className={styles.column}>
               <div className={styles.tag} aria-hidden>
                 <Divider
@@ -77,22 +102,38 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   About me
                 </div>
               </div>
-              <div className={styles.image}>
-                <Image
-                  reveal
-                  delay={100}
-                  placeholder={profileImgPlaceholder}
-                  srcSet={`${profileImg} 480w, ${profileImgLarge} 960w`}
-                  width={960}
-                  height={1280}
-                  sizes={`(max-width: ${media.mobile}px) 100vw, 480px`}
+              <ProfileText visible={visible} titleId={titleId} />
+            </div>
+
+            {/* ── Right: photo ── */}
+            <div className={styles.column}>
+              <div className={styles.imageWrap} data-visible={visible}>
+                {/* Corner bracket decorations */}
+                <span className={styles.cornerTL} aria-hidden="true" />
+                <span className={styles.cornerTR} aria-hidden="true" />
+                <span className={styles.cornerBL} aria-hidden="true" />
+                <span className={styles.cornerBR} aria-hidden="true" />
+
+                <img
+                  src="/aniket-photo.jpeg"
                   alt="Aniket Adhav — Full Stack Web and Android Developer"
+                  className={styles.photo}
                 />
-                <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
-                  <use href={`${katakana}#katakana-profile`} />
-                </svg>
+
+                {/* Floating name badge */}
+                <div className={styles.badge} data-visible={visible}>
+                  <span className={styles.badgeName}>Aniket Adhav</span>
+                  <span className={styles.badgeRole}>Full Stack &amp; Android Dev</span>
+                </div>
+
+                {/* Stat chips */}
+                <div className={styles.chipRow} data-visible={visible}>
+                  <span className={styles.chip}>🔥 290-day streak</span>
+                  <span className={styles.chip}>🥇 Rank 1 College</span>
+                </div>
               </div>
             </div>
+
           </div>
         )}
       </Transition>
