@@ -3,7 +3,6 @@ import styles from './splash-screen.module.css';
 
 const greetings = [
   'Hello',
-  'नमस्कार',
   'নমস্কার',
   'வணக்கம்',
   'నమస్కారం',
