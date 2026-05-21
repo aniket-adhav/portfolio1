@@ -18,6 +18,7 @@ const INTERVAL = 220;
 const TOTAL_DURATION = greetings.length * INTERVAL;
 
 export function SplashScreen() {
+  const [active, setActive] = useState(false);
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
   const [leaving, setLeaving] = useState(false);
@@ -26,11 +27,13 @@ export function SplashScreen() {
   const rafRef = useRef(null);
 
   useEffect(() => {
+    // Already seen this session → stay hidden, never render
     if (sessionStorage.getItem('splashShown')) {
-      setDone(true);
       return;
     }
 
+    // First visit → reveal splash immediately
+    setActive(true);
     startTimeRef.current = performance.now();
 
     const animatePercent = now => {
@@ -66,7 +69,7 @@ export function SplashScreen() {
     };
   }, []);
 
-  if (done) return null;
+  if (!active || done) return null;
 
   return (
     <div className={styles.splash} data-leaving={leaving}>
