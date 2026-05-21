@@ -91,7 +91,7 @@ const education = [
 
 const achievements = [
   { value: '1800+', label: 'LeetCode Rating',   icon: '⚡' },
-  { value: '650+',  label: 'DSA Problems',       icon: '🧠' },
+  { value: '700+',  label: 'DSA Problems',       icon: '🧠' },
   { value: '290',   label: 'Day Streak',          icon: '🔥' },
   { value: '10/10', label: 'SGPA — Rank 1',       icon: '🏅' },
 ];
@@ -165,7 +165,6 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   <li>🚀 Currently pursuing B.E. Computer Engineering with <strong>9.74 CGPA</strong></li>
                   <li>💡 Technical Head · led cross-functional teams on full-stack products</li>
                   <li>🏆 Hackathon winner &amp; top DSA performer with <strong>1800+ LeetCode rating</strong></li>
-                  <li>📱 Building for both web and Android — React to Jetpack Compose</li>
                 </ul>
 
                 <Button
