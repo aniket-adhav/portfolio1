@@ -447,7 +447,7 @@
   object-fit: cover;
   object-position: top center;
   aspect-ratio: 1 / 1;
-  filter: brightness(0.78) contrast(1.04) saturate(0.95);
+  filter: brightness(0.95) contrast(1.03) saturate(1.0);
   box-shadow:
     0 0 0 3px color-mix(in lab, var(--primary) 30%, transparent),
     0 20px 60px color-mix(in lab, var(--primary) 20%, transparent),
@@ -457,7 +457,7 @@
               box-shadow 0.35s ease;
 
   @media (prefers-color-scheme: dark) {
-    filter: brightness(0.88) contrast(1.02) saturate(1.0);
+    filter: brightness(0.92) contrast(1.02) saturate(1.0);
   }
 }
 
