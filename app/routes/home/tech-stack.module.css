@@ -1,79 +1,33 @@
-/* ═══════════════════════════════════════════════════════════
-   KEYFRAMES
-═══════════════════════════════════════════════════════════ */
+/* ─── Keyframes ─────────────────────────────────────────────── */
 
-/* Cards fall in from way above and bounce into place */
-@keyframes fall-in {
-  0% {
-    transform: translateY(-90vh) rotate(-12deg) scale(0.6);
-    opacity: 0;
-  }
-  55% {
-    transform: translateY(14px) rotate(3deg) scale(1.06);
-    opacity: 1;
-  }
-  70% {
-    transform: translateY(-6px) rotate(-1.5deg) scale(0.97);
-  }
-  83% {
-    transform: translateY(4px) rotate(0.8deg) scale(1.02);
-  }
-  92% {
-    transform: translateY(-2px) rotate(-0.3deg) scale(0.99);
-  }
-  100% {
-    transform: translateY(0) rotate(0deg) scale(1);
-    opacity: 1;
-  }
+@keyframes spin-ring {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
-/* Travelling light that traces the card border */
-@keyframes border-trace {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 300% 0%; }
-}
-
-/* Icon flips into color on hover */
-@keyframes icon-flip {
-  0%   { transform: rotateY(0deg) scale(1); }
-  50%  { transform: rotateY(90deg) scale(0.8); }
-  100% { transform: rotateY(0deg) scale(1.2); }
-}
-
-/* Radial pulse from center */
-@keyframes center-pulse {
-  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
-  100% { transform: translate(-50%, -50%) scale(3.5); opacity: 0; }
-}
-
-/* Glow breathe while hovering */
-@keyframes glow-breathe {
-  0%, 100% { box-shadow: 0 0 0 1px var(--primary), 0 8px 24px color-mix(in lab, var(--primary) 30%, transparent), 0 0 40px color-mix(in lab, var(--primary) 10%, transparent); }
-  50%       { box-shadow: 0 0 0 1px var(--primary), 0 12px 36px color-mix(in lab, var(--primary) 45%, transparent), 0 0 70px color-mix(in lab, var(--primary) 20%, transparent); }
-}
-
-/* Floating idle while hovered */
-@keyframes hover-float {
-  0%, 100% { transform: translateY(-10px) scale(1.12); }
-  50%       { transform: translateY(-16px) scale(1.12); }
-}
-
-/* Shine sweep */
 @keyframes shine-sweep {
-  0%   { left: -100%; opacity: 0; }
-  15%  { opacity: 1; }
+  0%   { left: -80%; opacity: 0; }
+  20%  { opacity: 1; }
   100% { left: 130%; opacity: 0; }
 }
 
-/* Label slides up on hover */
-@keyframes label-slide {
-  from { transform: translateY(4px); opacity: 0; }
-  to   { transform: translateY(0); opacity: 1; }
+@keyframes pop-in {
+  0%   { transform: scale(0.6) translateY(12px); opacity: 0; }
+  65%  { transform: scale(1.12) translateY(-3px); }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   SECTION
-═══════════════════════════════════════════════════════════ */
+@keyframes pulse-ring {
+  0%   { transform: scale(0.8); opacity: 0.7; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+@keyframes item-float {
+  0%, 100% { transform: translateY(-9px) scale(1.12); }
+  50%       { transform: translateY(-14px) scale(1.12); }
+}
+
+/* ─── Section ───────────────────────────────────────────────── */
 
 .section {
   width: 100%;
@@ -91,6 +45,8 @@
   }
 }
 
+/* ─── Content wrapper ───────────────────────────────────────── */
+
 .content {
   width: 100%;
   max-width: var(--maxWidthL);
@@ -101,9 +57,7 @@
   gap: var(--space3XL);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   HEADING
-═══════════════════════════════════════════════════════════ */
+/* ─── Heading ───────────────────────────────────────────────── */
 
 .heading {
   text-align: center;
@@ -147,9 +101,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   PYRAMID
-═══════════════════════════════════════════════════════════ */
+/* ─── Pyramid layout ────────────────────────────────────────── */
 
 .pyramid {
   display: flex;
@@ -157,6 +109,17 @@
   align-items: center;
   gap: 10px;
   width: 100%;
+  opacity: 0;
+  transition: opacity var(--durationXL) ease calc(var(--durationM) + 100ms);
+
+  &[data-visible='true'] {
+    opacity: 1;
+  }
+
+  &[data-visible='true'] .item {
+    animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+    animation-delay: var(--delay, 0ms);
+  }
 }
 
 .row {
@@ -166,9 +129,7 @@
   flex-wrap: wrap;
 }
 
-/* ═══════════════════════════════════════════════════════════
-   CARD — base state (invisible until visible=true)
-═══════════════════════════════════════════════════════════ */
+/* ─── Card ──────────────────────────────────────────────────── */
 
 .item {
   position: relative;
@@ -185,24 +146,27 @@
   text-decoration: none;
   overflow: hidden;
   cursor: pointer;
-
-  /* default: hidden, waiting for fall-in */
-  opacity: 0;
   transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
     border-color 0.3s ease,
-    background 0.3s ease;
-
-  /* When section becomes visible: trigger the fall */
-  [data-visible='true'] & {
-    animation: fall-in 0.75s cubic-bezier(0.22, 1, 0.36, 1) both;
-    animation-delay: var(--delay, 0ms);
-  }
+    background 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
-    border-color: transparent;
-    background: color-mix(in lab, var(--primary) 10%, var(--background));
-    animation: hover-float 2s ease-in-out infinite, glow-breathe 2s ease-in-out infinite !important;
-    z-index: 5;
+    transform: translateY(-9px) scale(1.12);
+    border-color: var(--primary);
+    background: color-mix(in lab, var(--primary) 12%, var(--background));
+    box-shadow:
+      0 0 0 1px var(--primary),
+      0 6px 20px color-mix(in lab, var(--primary) 25%, transparent),
+      0 16px 40px color-mix(in lab, var(--primary) 12%, transparent),
+      inset 0 1px 0 color-mix(in lab, var(--primary) 30%, transparent);
+  }
+
+  @media (--mediaUseMotion) {
+    &:hover {
+      animation: item-float 2.2s ease-in-out infinite;
+    }
   }
 
   @media (--mediaTablet) {
@@ -216,76 +180,45 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   TRACED BORDER LIGHT
-   A gradient that travels endlessly around the border
-═══════════════════════════════════════════════════════════ */
-
-.traceBorder {
-  position: absolute;
-  inset: -1.5px;
-  border-radius: 13px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--primary) 30%,
-    color-mix(in lab, var(--primary) 60%, white) 50%,
-    var(--primary) 70%,
-    transparent 100%
-  );
-  background-size: 300% 100%;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease;
-  /* Mask out the interior so only the border ring shows */
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 1.5px;
-
-  .item:hover & {
-    opacity: 1;
-    animation: border-trace 1.4s linear infinite;
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════
-   RADIAL CENTRE PULSE
-═══════════════════════════════════════════════════════════ */
-
-.centerPulse {
+/* Spinning conic-gradient ring */
+.ring {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 30px;
-  height: 30px;
+  width: 150%;
+  height: 150%;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  background: conic-gradient(
+    from 0deg,
+    transparent 0%,
+    var(--primary) 20%,
+    transparent 40%,
+    transparent 60%,
+    var(--primary) 80%,
+    transparent 100%
+  );
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, -50%) scale(0);
+  transform: translate(-50%, -50%);
+  transition: opacity 0.25s ease;
 
   .item:hover & {
-    animation: center-pulse 0.7s ease-out forwards;
+    opacity: 0.28;
+    animation: spin-ring 1.8s linear infinite;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   DIAGONAL SHINE SWEEP
-═══════════════════════════════════════════════════════════ */
-
+/* Diagonal shine sweep */
 .shine {
   position: absolute;
   top: 0;
   left: -100%;
-  width: 60%;
+  width: 55%;
   height: 100%;
   background: linear-gradient(
     110deg,
     transparent 0%,
-    color-mix(in lab, var(--primary) 55%, white) 50%,
+    color-mix(in lab, var(--primary) 50%, white) 50%,
     transparent 100%
   );
   opacity: 0;
@@ -293,13 +226,30 @@
   transform: skewX(-15deg);
 
   .item:hover & {
-    animation: shine-sweep 0.65s ease forwards;
+    animation: shine-sweep 0.7s ease forwards;
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   ICON
-═══════════════════════════════════════════════════════════ */
+/* Expanding pulse ring on hover */
+.pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  border: 1.5px solid var(--primary);
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.8);
+  transform-origin: center;
+
+  .item:hover & {
+    animation: pulse-ring 0.8s ease-out forwards;
+  }
+}
+
+/* ─── Icon ──────────────────────────────────────────────────── */
 
 .icon {
   width: 30px;
@@ -307,16 +257,19 @@
   object-fit: contain;
   filter: grayscale(100%) brightness(1.15);
   opacity: 0.6;
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   display: block;
   position: relative;
   z-index: 1;
   flex-shrink: 0;
-  transition: filter 0.3s ease, opacity 0.3s ease;
 
   .item:hover & {
     filter: none;
     opacity: 1;
-    animation: icon-flip 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    transform: scale(1.2) rotate(-4deg);
   }
 
   @media (--mediaMobile) {
@@ -325,9 +278,7 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   LABEL
-═══════════════════════════════════════════════════════════ */
+/* ─── Label ─────────────────────────────────────────────────── */
 
 .name {
   font-size: 7.5px;
@@ -341,13 +292,12 @@
   max-width: 64px;
   letter-spacing: 0.02em;
   line-height: 1.2;
+  transition: color 0.3s ease;
   position: relative;
   z-index: 1;
-  transition: color 0.3s ease;
 
   .item:hover & {
     color: var(--primary);
-    animation: label-slide 0.3s ease forwards;
   }
 
   @media (--mediaMobile) {
@@ -356,27 +306,25 @@
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   TOOLTIP — slides up with spring bounce
-═══════════════════════════════════════════════════════════ */
+/* ─── Tooltip ───────────────────────────────────────────────── */
 
 .tooltip {
   position: absolute;
   bottom: calc(100% + 10px);
   left: 50%;
-  transform: translateX(-50%) translateY(10px) scale(0.85);
+  transform: translateX(-50%) translateY(8px) scale(0.9);
   background: var(--primary);
   color: var(--background);
   font-size: 10px;
   font-weight: var(--fontWeightMedium);
   white-space: nowrap;
-  padding: 4px 10px;
+  padding: 4px 9px;
   border-radius: 6px;
   opacity: 0;
   pointer-events: none;
   transition:
     opacity 0.2s ease,
-    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   z-index: 20;
   letter-spacing: 0.04em;
 
