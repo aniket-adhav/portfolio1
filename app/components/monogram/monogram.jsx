@@ -10,9 +10,9 @@ export const Monogram = forwardRef(({ highlight, className, ...props }, ref) => 
     <svg
       aria-hidden
       className={classes(styles.monogram, className)}
-      width="48"
+      width="30"
       height="29"
-      viewBox="0 0 48 29"
+      viewBox="0 0 30 29"
       ref={ref}
       {...props}
     >
@@ -20,7 +20,7 @@ export const Monogram = forwardRef(({ highlight, className, ...props }, ref) => 
         <clipPath id={clipId}>
           <path
             clipRule="evenodd"
-            d="M0 29L24 0L48 29ZM7 29L24 8L41 29ZM11 18L37 18L37 22L11 22Z"
+            d="M0 29L15 0L30 29ZM4 29L15 8L26 29ZM7 18L23 18L23 22L7 22Z"
           />
         </clipPath>
       </defs>

@@ -31,11 +31,6 @@ export function SplashScreen() {
   useEffect(() => {
     setMounted(true);
 
-    if (sessionStorage.getItem('splashShown')) {
-      setDone(true);
-      return;
-    }
-
     let i = 0;
     const interval = setInterval(() => {
       i++;
@@ -45,7 +40,6 @@ export function SplashScreen() {
           setLeaving(true);
           setTimeout(() => {
             setDone(true);
-            sessionStorage.setItem('splashShown', '1');
           }, 900);
         }, 350);
       } else {

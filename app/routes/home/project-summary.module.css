@@ -126,6 +126,19 @@
         top: 0;
       }
     }
+
+    @media (--mediaMobile) {
+      --width: 100%;
+
+      top: 0;
+      left: 0;
+
+      .summary[data-alternate='true'] & {
+        --width: 100%;
+        left: 0;
+        top: 0;
+      }
+    }
   }
 
   &[data-device='phone'] {

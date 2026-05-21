@@ -7,7 +7,7 @@
   </style>
   <path class="fg" d="
     M32 6
-    L10 58 h8 l4.8-12 h18.4 l4.8 12 h8 Z
-    M32 20 l6.4 18 H25.6 Z
+    L14 58 h7 l4-12 h14 l4 12 h7 Z
+    M32 20 l5 18 H27 Z
   " fill-rule="evenodd"/>
 </svg>
