@@ -54,8 +54,8 @@ export async function action({ request }) {
 const SOCIAL_LINKS = [
   {
     label: 'GitHub',
-    handle: '@aniketadhav',
-    href: 'https://github.com/aniketadhav',
+    handle: '@aniket-adhav',
+    href: 'https://github.com/aniket-adhav',
     color: '#6e40c9',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">

@@ -90,7 +90,7 @@ const MAX_MESSAGE_LENGTH = 4096;
 const EMAIL_PATTERN = /(.+)@(.+){2,}\.(.+){2,}/;
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub',    handle: '@aniketadhav',            href: 'https://github.com/aniketadhav',                          color: '#6e40c9', Icon: IconGitHub    },
+  { label: 'GitHub',    handle: '@aniket-adhav',            href: 'https://github.com/aniket-adhav',                          color: '#6e40c9', Icon: IconGitHub    },
   { label: 'LinkedIn',  handle: 'Aniket Adhav',             href: 'https://www.linkedin.com/in/aniket-adhav-a70182312/',     color: '#0a66c2', Icon: IconLinkedIn  },
   { label: 'LeetCode',  handle: '@aniket_adhav',            href: 'https://leetcode.com/u/aniket_adhav/',                    color: '#ffa116', Icon: IconLeetCode  },
   { label: 'Instagram', handle: '@aniket_adhav_07',         href: 'https://www.instagram.com/aniket_adhav_07',               color: '#e1306c', Icon: IconInstagram },
