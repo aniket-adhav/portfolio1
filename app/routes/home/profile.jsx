@@ -130,11 +130,14 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   <span className={styles.badgeRole}>Full Stack &amp; Android Dev</span>
                 </div>
 
-                {/* Stat chips */}
-                <div className={styles.chipRow} data-visible={visible}>
-                  <span className={styles.chip}>🔥 290-day streak</span>
-                  <span className={styles.chip}>🥇 Rank 1 College</span>
-                </div>
+                {/* Decorative animated rings */}
+                <span className={styles.ringOuter} aria-hidden="true" />
+                <span className={styles.ringMiddle} aria-hidden="true" />
+                <span className={styles.scanLine} aria-hidden="true" />
+                <span className={styles.dotTL} aria-hidden="true" />
+                <span className={styles.dotTR} aria-hidden="true" />
+                <span className={styles.dotBL} aria-hidden="true" />
+                <span className={styles.dotBR} aria-hidden="true" />
               </div>
             </div>
 
