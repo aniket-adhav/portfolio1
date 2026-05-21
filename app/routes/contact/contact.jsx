@@ -66,7 +66,7 @@ const SOCIAL_LINKS = [
   {
     label: 'LinkedIn',
     handle: 'Aniket Adhav',
-    href: 'https://linkedin.com/in/aniketadhav',
+    href: 'https://www.linkedin.com/in/aniket-adhav-a70182312/',
     color: '#0a66c2',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
@@ -77,7 +77,7 @@ const SOCIAL_LINKS = [
   {
     label: 'LeetCode',
     handle: '@aniketadhav',
-    href: 'https://leetcode.com/aniketadhav',
+    href: 'https://leetcode.com/u/aniket_adhav/',
     color: '#ffa116',
     icon: (
       <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
