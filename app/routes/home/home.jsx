@@ -17,6 +17,7 @@ import { Profile } from './profile';
 import { ProjectSummary } from './project-summary';
 import { SplashScreen } from './splash-screen';
 import { TechStack } from './tech-stack';
+import { ContactSection } from './contact-section';
 import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
@@ -57,9 +58,10 @@ export const Home = () => {
   const projectThree = useRef();
   const skills = useRef();
   const details = useRef();
+  const contact = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, skills, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, skills, details, contact];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -179,6 +181,11 @@ export const Home = () => {
         sectionRef={details}
         visible={visibleSections.includes(details.current)}
         id="details"
+      />
+      <ContactSection
+        id="contact"
+        sectionRef={contact}
+        visible={visibleSections.includes(contact.current)}
       />
       <Footer />
     </div>
