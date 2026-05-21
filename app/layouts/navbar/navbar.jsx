@@ -1,3 +1,4 @@
+import { Button } from '~/components/button';
 import { Icon } from '~/components/icon';
 import { Monogram } from '~/components/monogram';
 import { useTheme } from '~/components/theme-provider';
@@ -198,15 +199,13 @@ export const Navbar = () => {
         {!isMobile && <ThemeToggle data-navbar-item />}
       </header>
 
-      <button
+      <Button
         className={styles.resumeButton}
         onClick={() => setResumeOpen(true)}
-        aria-label="View Resume"
+        icon="resume"
       >
-        <span className={styles.resumeButtonPulse} />
-        <Icon icon="resume" className={styles.resumeIcon} />
-        <span>Resume</span>
-      </button>
+        Resume
+      </Button>
 
       {resumeOpen && (
         <div className={styles.resumeOverlay} onClick={() => setResumeOpen(false)}>
