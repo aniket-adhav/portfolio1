@@ -1,7 +1,7 @@
 import styles from './tech-stack.module.css';
 
 const techRows = [
-  // Row 1 — Programming Languages (12)
+  // Row 1 — Programming Languages (12) ← widest
   [
     { name: 'C++',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',   url: 'https://isocpp.org' },
     { name: 'Java',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',             url: 'https://java.com' },
@@ -16,68 +16,71 @@ const techRows = [
     { name: 'C',          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg',                   url: 'https://en.cppreference.com/w/c' },
     { name: 'Solidity',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/solidity/solidity-original.svg',     url: 'https://soliditylang.org' },
   ],
-  // Row 2 — Web & Backend Frameworks (12)
+  // Row 2 — Web & Backend Frameworks (11)
   [
-    { name: 'React',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',               url: 'https://react.dev' },
-    { name: 'Next.js',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',             url: 'https://nextjs.org' },
-    { name: 'Node.js',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',             url: 'https://nodejs.org' },
-    { name: 'Express',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',           url: 'https://expressjs.com' },
-    { name: 'Spring Boot',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg',             url: 'https://spring.io/projects/spring-boot' },
-    { name: 'Tailwind',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',   url: 'https://tailwindcss.com' },
-    { name: 'Redux',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',               url: 'https://redux.js.org' },
-    { name: 'Bootstrap',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',       url: 'https://getbootstrap.com' },
-    { name: 'Django',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',                url: 'https://djangoproject.com' },
-    { name: 'Flask',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',               url: 'https://flask.palletsprojects.com' },
-    { name: 'FastAPI',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',           url: 'https://fastapi.tiangolo.com' },
-    { name: 'Ktor',         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ktor/ktor-original.svg',                 url: 'https://ktor.io' },
+    { name: 'React',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',             url: 'https://react.dev' },
+    { name: 'Next.js',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',           url: 'https://nextjs.org' },
+    { name: 'Node.js',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',           url: 'https://nodejs.org' },
+    { name: 'Express',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg',         url: 'https://expressjs.com' },
+    { name: 'Spring Boot', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg',           url: 'https://spring.io/projects/spring-boot' },
+    { name: 'Django',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg',              url: 'https://djangoproject.com' },
+    { name: 'Flask',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',             url: 'https://flask.palletsprojects.com' },
+    { name: 'FastAPI',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',         url: 'https://fastapi.tiangolo.com' },
+    { name: 'Tailwind',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg', url: 'https://tailwindcss.com' },
+    { name: 'Bootstrap',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',     url: 'https://getbootstrap.com' },
+    { name: 'Redux',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg',             url: 'https://redux.js.org' },
   ],
-  // Row 3 — Mobile & Databases (10)
+  // Row 3 — Mobile & Dev Tools (10)
   [
-    { name: 'Android',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg',         url: 'https://developer.android.com' },
-    { name: 'Jetpack',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg', url: 'https://developer.android.com/jetpack/compose' },
-    { name: 'Retrofit', icon: 'https://cdn.simpleicons.org/retrofit/48B983',                                             url: 'https://square.github.io/retrofit/' },
-    { name: 'MongoDB',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',         url: 'https://mongodb.com' },
-    { name: 'MySQL',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',             url: 'https://mysql.com' },
+    { name: 'Android',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg',              url: 'https://developer.android.com' },
+    { name: 'Jetpack',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/androidstudio/androidstudio-original.svg',  url: 'https://developer.android.com/jetpack/compose' },
+    { name: 'Retrofit', icon: 'https://cdn.simpleicons.org/retrofit/48B983',                                                   url: 'https://square.github.io/retrofit/' },
+    { name: 'Ktor',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ktor/ktor-original.svg',                    url: 'https://ktor.io' },
+    { name: 'Git',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',                      url: 'https://git-scm.com' },
+    { name: 'GitHub',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',                url: 'https://github.com' },
+    { name: 'Docker',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',                url: 'https://docker.com' },
+    { name: 'Gradle',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg',                url: 'https://gradle.org' },
+    { name: 'IntelliJ', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg',            url: 'https://jetbrains.com/idea/' },
+    { name: 'Vercel',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',                url: 'https://vercel.com' },
+  ],
+  // Row 4 — Databases (9)
+  [
+    { name: 'MongoDB',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',     url: 'https://mongodb.com' },
+    { name: 'MySQL',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',         url: 'https://mysql.com' },
     { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg', url: 'https://postgresql.org' },
-    { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg',       url: 'https://firebase.google.com' },
-    { name: 'SQLite',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',           url: 'https://sqlite.org' },
-    { name: 'Room DB',  icon: 'https://cdn.simpleicons.org/android/3DDC84',                                              url: 'https://developer.android.com/training/data-storage/room' },
-    { name: 'Redis',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',             url: 'https://redis.io' },
-  ],
-  // Row 4 — AI / ML / Data Science (10)
-  [
-    { name: 'TensorFlow',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',   url: 'https://tensorflow.org' },
-    { name: 'PyTorch',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',         url: 'https://pytorch.org' },
-    { name: 'Scikit-learn',icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg', url: 'https://scikit-learn.org' },
-    { name: 'OpenCV',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',           url: 'https://opencv.org' },
-    { name: 'NumPy',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',             url: 'https://numpy.org' },
-    { name: 'Pandas',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',           url: 'https://pandas.pydata.org' },
-    { name: 'Keras',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg',             url: 'https://keras.io' },
-    { name: 'Jupyter',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',         url: 'https://jupyter.org' },
-    { name: 'Matplotlib',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg',   url: 'https://matplotlib.org' },
-    { name: 'Raspberry Pi',icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg', url: 'https://raspberrypi.com' },
-  ],
-  // Row 5 — Tools, DevOps & Platforms (8)
-  [
-    { name: 'Git',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',             url: 'https://git-scm.com' },
-    { name: 'GitHub',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',       url: 'https://github.com' },
-    { name: 'Docker',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',       url: 'https://docker.com' },
-    { name: 'Vercel',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',       url: 'https://vercel.com' },
+    { name: 'Firebase',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg',   url: 'https://firebase.google.com' },
+    { name: 'SQLite',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',       url: 'https://sqlite.org' },
+    { name: 'Room DB',    icon: 'https://cdn.simpleicons.org/android/3DDC84',                                           url: 'https://developer.android.com/training/data-storage/room' },
+    { name: 'Redis',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg',         url: 'https://redis.io' },
     { name: 'Postman',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',     url: 'https://postman.com' },
-    { name: 'Figma',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',         url: 'https://figma.com' },
     { name: 'VS Code',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',       url: 'https://code.visualstudio.com' },
-    { name: 'Linux',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',         url: 'https://kernel.org' },
-    { name: 'Gradle',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg',       url: 'https://gradle.org' },
-    { name: 'IntelliJ',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/intellij/intellij-original.svg',   url: 'https://jetbrains.com/idea/' },
   ],
-  // Row 6 — Competitive & Platforms (6)
+  // Row 5 — AI / ML / Data Science (8)
   [
-    { name: 'LeetCode',   icon: 'https://cdn.simpleicons.org/leetcode/FFA116',       url: 'https://leetcode.com/u/aniket_adhav/' },
-    { name: 'HackerRank', icon: 'https://cdn.simpleicons.org/hackerrank/2EC866',     url: 'https://hackerrank.com/aniketadhav' },
-    { name: 'Cloudinary', icon: 'https://cdn.simpleicons.org/cloudinary/3448C5',     url: 'https://cloudinary.com' },
-    { name: 'Leaflet',    icon: 'https://cdn.simpleicons.org/leaflet/199900',         url: 'https://leafletjs.com' },
-    { name: 'Framer',     icon: 'https://cdn.simpleicons.org/framer/0055FF',          url: 'https://framer.com' },
-    { name: 'Arduino',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg', url: 'https://arduino.cc' },
+    { name: 'TensorFlow',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',   url: 'https://tensorflow.org' },
+    { name: 'PyTorch',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg',         url: 'https://pytorch.org' },
+    { name: 'Scikit-learn', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg', url: 'https://scikit-learn.org' },
+    { name: 'OpenCV',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg',           url: 'https://opencv.org' },
+    { name: 'NumPy',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg',             url: 'https://numpy.org' },
+    { name: 'Pandas',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg',           url: 'https://pandas.pydata.org' },
+    { name: 'Keras',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg',             url: 'https://keras.io' },
+    { name: 'Jupyter',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg',         url: 'https://jupyter.org' },
+  ],
+  // Row 6 — Design, OS & Hardware (6)
+  [
+    { name: 'Figma',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',               url: 'https://figma.com' },
+    { name: 'Linux',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',               url: 'https://kernel.org' },
+    { name: 'Matplotlib',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg',     url: 'https://matplotlib.org' },
+    { name: 'Raspberry Pi', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/raspberrypi/raspberrypi-original.svg',   url: 'https://raspberrypi.com' },
+    { name: 'Arduino',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/arduino/arduino-original.svg',           url: 'https://arduino.cc' },
+    { name: 'Cloudinary',   icon: 'https://cdn.simpleicons.org/cloudinary/3448C5',                                             url: 'https://cloudinary.com' },
+  ],
+  // Row 7 — Competitive & Platforms (4) ← narrowest
+  [
+    { name: 'LeetCode',   icon: 'https://cdn.simpleicons.org/leetcode/FFA116',   url: 'https://leetcode.com/u/aniket_adhav/' },
+    { name: 'HackerRank', icon: 'https://cdn.simpleicons.org/hackerrank/2EC866', url: 'https://hackerrank.com/aniketadhav' },
+    { name: 'Leaflet',    icon: 'https://cdn.simpleicons.org/leaflet/199900',     url: 'https://leafletjs.com' },
+    { name: 'Framer',     icon: 'https://cdn.simpleicons.org/framer/0055FF',      url: 'https://framer.com' },
   ],
 ];
 
@@ -89,29 +92,6 @@ export const TechStack = ({ id, sectionRef, visible }) => {
       className={styles.section}
       data-visible={visible}
     >
-      {/* Animated background layer */}
-      <div className={styles.bg} aria-hidden="true">
-        <div className={styles.orb1} />
-        <div className={styles.orb2} />
-        <div className={styles.orb3} />
-        <div className={styles.gridOverlay} />
-        <div className={styles.particles}>
-          {Array.from({ length: 20 }).map((_, i) => (
-            <span
-              key={i}
-              className={styles.particle}
-              style={{
-                '--x': `${5 + (i * 4.7) % 90}%`,
-                '--y': `${10 + (i * 7.3) % 80}%`,
-                '--dur': `${4 + (i % 5)}s`,
-                '--del': `${(i * 0.4) % 4}s`,
-                '--size': `${2 + (i % 3)}px`,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-
       <div className={styles.content}>
         <div className={styles.heading} data-visible={visible}>
           <div className={styles.label}>Skills &amp; Technologies</div>
