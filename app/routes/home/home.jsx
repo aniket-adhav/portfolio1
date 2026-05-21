@@ -10,6 +10,9 @@ import moviesHouseTexture2 from '~/assets/movieshouse-screenshot2.png';
 import moviesHouseTextureLarge from '~/assets/movieshouse-screenshot-large.png';
 import moviesHouseTexturePlaceholder from '~/assets/movieshouse-screenshot-placeholder.jpg';
 import moviesHouseTexture from '~/assets/movieshouse-screenshot.png';
+import macbookProModel from '~/assets/macbook-pro.glb';
+import iphoneModel from '~/assets/iphone-11.glb';
+import { Button } from '~/components/button';
 import { Footer } from '~/components/footer';
 import { baseMeta } from '~/utils/meta';
 import { Intro } from './intro';
@@ -22,7 +25,7 @@ import { useEffect, useRef, useState } from 'react';
 import config from '~/config.json';
 import styles from './home.module.css';
 
-// Prefetch draco decoder wasm
+// Prefetch draco decoder wasm and 3D model assets
 export const links = () => {
   return [
     {
@@ -37,6 +40,20 @@ export const links = () => {
       href: '/draco/draco_decoder.wasm',
       as: 'fetch',
       type: 'application/wasm',
+      importance: 'low',
+    },
+    {
+      rel: 'prefetch',
+      href: macbookProModel,
+      as: 'fetch',
+      type: 'model/gltf-binary',
+      importance: 'low',
+    },
+    {
+      rel: 'prefetch',
+      href: iphoneModel,
+      as: 'fetch',
+      type: 'model/gltf-binary',
       importance: 'low',
     },
   ];
@@ -74,7 +91,7 @@ export const Home = () => {
           }
         });
       },
-      { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
+      { rootMargin: '0px 0px 0px 0px', threshold: 0.1 }
     );
 
     const indicatorObserver = new IntersectionObserver(
@@ -172,6 +189,17 @@ export const Home = () => {
           ],
         }}
       />
+      <div className={styles.githubRow}>
+        <Button
+          href="https://github.com/aniket-adhav"
+          target="_blank"
+          rel="noopener noreferrer"
+          iconEnd="arrow-right"
+          secondary
+        >
+          See all projects on GitHub
+        </Button>
+      </div>
       <TechStack
         id="skills"
         sectionRef={skills}

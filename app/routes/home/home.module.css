@@ -1,3 +1,9 @@
 .home {
   overflow-x: hidden;
 }
+
+.githubRow {
+  display: flex;
+  justify-content: center;
+  padding: var(--spaceL) var(--spaceOuter) var(--space3XL);
+}
