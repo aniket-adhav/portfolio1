@@ -60,7 +60,7 @@ export function CivicAssist() {
                 <Button
                   iconHoverShift
                   iconEnd="arrow-right"
-                  href="https://github.com/aniketadhav/civic-assist"
+                  href="https://github.com/aniket-adhav/Civic_Assist_Platform"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -281,7 +281,7 @@ export function CivicAssist() {
                 <Button
                   iconHoverShift
                   iconEnd="arrow-right"
-                  href="https://github.com/aniketadhav/civic-assist"
+                  href="https://github.com/aniket-adhav/Civic_Assist_Platform"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

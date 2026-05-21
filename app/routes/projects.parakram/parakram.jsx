@@ -60,7 +60,7 @@ export function Parakram() {
                 <Button
                   iconHoverShift
                   iconEnd="arrow-right"
-                  href="https://github.com/aniketadhav/parakram"
+                  href="https://github.com/aniket-adhav/parakram-web"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -259,7 +259,7 @@ export function Parakram() {
                 <Button
                   iconHoverShift
                   iconEnd="arrow-right"
-                  href="https://github.com/aniketadhav/parakram"
+                  href="https://github.com/aniket-adhav/parakram-web"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

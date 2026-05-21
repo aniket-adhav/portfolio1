@@ -7,6 +7,10 @@
   justify-content: center;
   padding: var(--spaceL) var(--spaceOuter) var(--space3XL);
 
+  & > * {
+    font-size: var(--fontSizeBodyL);
+  }
+
   @media (--mediaMobile) {
     padding-left: var(--spaceM);
     padding-right: var(--spaceM);
@@ -14,6 +18,7 @@
     & > * {
       width: 100%;
       justify-content: center;
+      font-size: var(--fontSizeBodyM);
     }
   }
 }
