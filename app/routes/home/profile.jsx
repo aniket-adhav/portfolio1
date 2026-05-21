@@ -110,10 +110,10 @@ export const Profile = ({ id, visible, sectionRef }) => {
             <div className={styles.column}>
               <div className={styles.imageWrap} data-visible={visible}>
 
-                {/* Background glow orb behind photo */}
+                {/* Ambient glow orb */}
                 <span className={styles.glowOrb} aria-hidden="true" />
 
-                {/* Rotating border ring */}
+                {/* Dual rotating rings */}
                 <span className={styles.borderRing} aria-hidden="true" />
 
                 {/* Floating particles */}
@@ -125,10 +125,19 @@ export const Profile = ({ id, visible, sectionRef }) => {
 
                 {/* Photo */}
                 <img
-                  src="/aniket-photo.png"
+                  src="/profile.jpg"
                   alt="Aniket Adhav — Full Stack Web and Android Developer"
                   className={styles.photo}
                 />
+
+                {/* Shimmer scan overlay */}
+                <span className={styles.shimmer} aria-hidden="true" />
+
+                {/* Corner accent brackets */}
+                <span className={styles.cornerTL} aria-hidden="true" />
+                <span className={styles.cornerTR} aria-hidden="true" />
+                <span className={styles.cornerBL} aria-hidden="true" />
+                <span className={styles.cornerBR} aria-hidden="true" />
 
                 {/* English vertical text */}
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
@@ -138,7 +147,10 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 {/* Name badge */}
                 <div className={styles.badge} data-visible={visible}>
                   <span className={styles.badgeName}>Aniket Adhav</span>
-                  <span className={styles.badgeRole}>Full Stack &amp; Android Dev</span>
+                  <span className={styles.badgeRole}>
+                    <span className={styles.badgeDot} />
+                    Full Stack &amp; Android Dev
+                  </span>
                 </div>
 
               </div>
