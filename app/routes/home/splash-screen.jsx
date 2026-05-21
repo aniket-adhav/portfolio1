@@ -80,9 +80,10 @@ export function SplashScreen() {
 
   return (
     <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
-      {phase === 'greeting' && (
+      {/* idle = SSR/first-paint: always show "Hello" so there's no blank screen */}
+      {(phase === 'idle' || phase === 'greeting') && (
         <div className={styles.inner}>
-          <span className={styles.word} key={index}>
+          <span className={styles.word} key={phase === 'idle' ? 'idle' : index}>
             {greetings[index]}
           </span>
         </div>
