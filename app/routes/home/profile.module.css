@@ -1281,7 +1281,7 @@
 .certImageWrap {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 190px;
   overflow: hidden;
   flex-shrink: 0;
 }
