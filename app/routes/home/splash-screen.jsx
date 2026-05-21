@@ -3,23 +3,19 @@ import styles from './splash-screen.module.css';
 
 const greetings = [
   'Hello',
-  'नमस्ते',
   'Hola',
-  'নমস্কার',
-  'வணக்கம்',
   'Bonjour',
-  'నమస్కారం',
   'Ciao',
-  'नमस्कार',
   'Hallo',
-  'ਸਤ ਸ੍ਰੀ ਅਕਾਲ',
   'Olá',
-  'ನಮಸ್ಕಾರ',
   'Привет',
-  'નમસ્તે',
-  'നമസ്കാരം',
   'مرحبا',
-  'Hello',
+  'नमस्कार',
+  'নমস্কার',
+  'ನಮಸ್ಕಾರ',
+  'வணக்கம்',
+  'నమస్కారం',
+  'नमस्ते',
 ];
 
 export function SplashScreen() {
@@ -42,7 +38,7 @@ export function SplashScreen() {
       } else {
         setIndex(i);
       }
-    }, 140);
+    }, 220);
 
     return () => clearInterval(interval);
   }, []);
