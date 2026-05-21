@@ -76,14 +76,6 @@ export const TechStack = ({ id, sectionRef, visible }) => {
       className={styles.section}
       data-visible={visible}
     >
-      {/* Animated background — pure CSS orbs */}
-      <div className={styles.bg} aria-hidden="true">
-        <div className={styles.orb1} />
-        <div className={styles.orb2} />
-        <div className={styles.orb3} />
-        <div className={styles.grid} />
-      </div>
-
       <div className={styles.content}>
         <div className={styles.heading} data-visible={visible}>
           <div className={styles.label}>Skills &amp; Technologies</div>
