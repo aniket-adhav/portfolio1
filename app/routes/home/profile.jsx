@@ -106,8 +106,10 @@ export const Profile = ({ id, visible, sectionRef }) => {
               <ProfileText visible={visible} titleId={titleId} />
             </div>
 
-            {/* ── Right: photo ── */}
+            {/* ── Right: photo + name ── */}
             <div className={styles.column}>
+
+              {/* Image block */}
               <div className={styles.imageWrap} data-visible={visible}>
 
                 {/* Ambient glow orb */}
@@ -123,12 +125,14 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 <span className={styles.p4} aria-hidden="true" />
                 <span className={styles.p5} aria-hidden="true" />
 
-                {/* Photo */}
-                <img
-                  src="/profile.jpg"
-                  alt="Aniket Adhav — Full Stack Web and Android Developer"
-                  className={styles.photo}
-                />
+                {/* Clip-reveal wrapper — photo slides up into view */}
+                <div className={styles.photoClip}>
+                  <img
+                    src="/profile.jpg"
+                    alt="Aniket Adhav — Full Stack Web and Android Developer"
+                    className={styles.photo}
+                  />
+                </div>
 
                 {/* Shimmer scan overlay */}
                 <span className={styles.shimmer} aria-hidden="true" />
@@ -139,22 +143,23 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 <span className={styles.cornerBL} aria-hidden="true" />
                 <span className={styles.cornerBR} aria-hidden="true" />
 
-                {/* English vertical text */}
+                {/* Vertical name text */}
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${profileEn}#profile-en`} />
                 </svg>
 
-                {/* Name badge */}
-                <div className={styles.badge} data-visible={visible}>
-                  <span className={styles.badgeName}>Aniket Adhav</span>
-                  <span className={styles.badgeDivider} aria-hidden="true" />
-                  <span className={styles.badgeRole}>
-                    <span className={styles.badgeDot} />
-                    Full Stack &amp; Android Dev
-                  </span>
-                </div>
-
               </div>
+
+              {/* ── Name badge — sits BELOW the image ── */}
+              <div className={styles.badge} data-visible={visible}>
+                <span className={styles.badgeName}>Aniket Adhav</span>
+                <span className={styles.badgeDivider} aria-hidden="true" />
+                <span className={styles.badgeRole}>
+                  <span className={styles.badgeDot} />
+                  Full Stack &amp; Android Dev
+                </span>
+              </div>
+
             </div>
 
           </div>
