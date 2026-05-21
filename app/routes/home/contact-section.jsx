@@ -208,6 +208,27 @@ export const ContactSection = ({ id, visible, sectionRef }) => {
                 ))}
               </div>
 
+              {/* Resume buttons */}
+              <div className={styles.resumeRow} data-visible={vis}>
+                <Button
+                  href="/aniket-adhav-resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  icon="resume"
+                  iconEnd="arrow-right"
+                >
+                  View Resume
+                </Button>
+                <Button
+                  href="/aniket-adhav-resume.pdf"
+                  download="Aniket_Adhav_Resume.pdf"
+                  icon="download"
+                  secondary
+                >
+                  Download
+                </Button>
+              </div>
+
             </div>
 
             {/* ── Right column: message form ── */}

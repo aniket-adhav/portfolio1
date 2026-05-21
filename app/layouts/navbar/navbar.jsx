@@ -203,6 +203,7 @@ export const Navbar = () => {
         className={styles.resumeButton}
         onClick={() => setResumeOpen(true)}
         icon="resume"
+        secondary
       >
         Resume
       </Button>

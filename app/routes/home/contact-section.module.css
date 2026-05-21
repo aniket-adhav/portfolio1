@@ -60,6 +60,18 @@
   gap: 32px;
 }
 
+.resumeRow {
+  display: flex;
+  gap: var(--spaceM);
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: opacity var(--durationXL) ease var(--durationM);
+
+  &[data-visible='true'] {
+    opacity: 1;
+  }
+}
+
 /* ── Header ── */
 
 .header {
