@@ -241,6 +241,22 @@
     z-index: var(--zIndex4);
     font-weight: var(--fontWeightBold);
 
+    &::after {
+      background: var(--accent) !important;
+      clip-path: none !important;
+      height: 4px !important;
+      inset: auto var(--spaceS) 0 !important;
+      width: auto !important;
+      transform: scaleX(0) translateZ(0) !important;
+      transform-origin: right !important;
+    }
+
+    &:hover::after,
+    &:active::after {
+      transform: scaleX(1) translateZ(0) !important;
+      transform-origin: left !important;
+    }
+
     @media (--mediaMobile) {
       bottom: 20px;
       right: 20px;
