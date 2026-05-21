@@ -15,73 +15,93 @@ const greetings = [
 ];
 
 const INTERVAL = 220;
-const TOTAL_DURATION = greetings.length * INTERVAL;
+const TOTAL_DURATION = 1500;
 
 export function SplashScreen() {
-  const [active, setActive] = useState(false);
+  // 'idle' on SSR → covers content. Client sets 'greeting', 'loader', or 'done'
+  const [phase, setPhase] = useState('idle');
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
   const [leaving, setLeaving] = useState(false);
-  const [done, setDone] = useState(false);
-  const startTimeRef = useRef(null);
   const rafRef = useRef(null);
 
   useEffect(() => {
-    // Already seen this session → stay hidden, never render
-    if (sessionStorage.getItem('splashShown')) {
-      return;
-    }
+    const seen = sessionStorage.getItem('splashShown');
 
-    // First visit → reveal splash immediately
-    setActive(true);
-    startTimeRef.current = performance.now();
+    if (!seen) {
+      // ── FIRST VISIT: greeting splash ──────────────────────
+      setPhase('greeting');
 
-    const animatePercent = now => {
-      const elapsed = now - startTimeRef.current;
-      const pct = Math.min(100, Math.round((elapsed / TOTAL_DURATION) * 100));
-      setPercent(pct);
-      if (pct < 100) {
-        rafRef.current = requestAnimationFrame(animatePercent);
-      }
-    };
-    rafRef.current = requestAnimationFrame(animatePercent);
-
-    let i = 0;
-    const interval = setInterval(() => {
-      i++;
-      if (i >= greetings.length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setLeaving(true);
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        if (i >= greetings.length) {
+          clearInterval(interval);
           setTimeout(() => {
-            sessionStorage.setItem('splashShown', '1');
-            setDone(true);
-          }, 900);
-        }, 350);
-      } else {
-        setIndex(i);
-      }
-    }, INTERVAL);
+            setLeaving(true);
+            setTimeout(() => {
+              sessionStorage.setItem('splashShown', '1');
+              setPhase('done');
+            }, 900);
+          }, 350);
+        } else {
+          setIndex(i);
+        }
+      }, INTERVAL);
 
-    return () => {
-      clearInterval(interval);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
+      return () => clearInterval(interval);
+    } else {
+      // ── REFRESH: percentage loader ────────────────────────
+      setPhase('loader');
+      const start = performance.now();
+
+      const tick = now => {
+        const pct = Math.min(100, Math.round(((now - start) / TOTAL_DURATION) * 100));
+        setPercent(pct);
+        if (pct < 100) {
+          rafRef.current = requestAnimationFrame(tick);
+        } else {
+          setTimeout(() => {
+            setLeaving(true);
+            setTimeout(() => setPhase('done'), 700);
+          }, 120);
+        }
+      };
+      rafRef.current = requestAnimationFrame(tick);
+
+      return () => {
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      };
+    }
   }, []);
 
-  if (!active || done) return null;
+  if (phase === 'done') return null;
 
   return (
     <div className={styles.splash} data-leaving={leaving}>
-      <div className={styles.inner}>
-        <span className={styles.word} key={index}>
-          {greetings[index]}
-        </span>
-      </div>
+      {phase === 'greeting' && (
+        <div className={styles.inner}>
+          <span className={styles.word} key={index}>
+            {greetings[index]}
+          </span>
+        </div>
+      )}
 
-      <div className={styles.bar}>
-        <div className={styles.barFill} style={{ width: `${percent}%` }} />
-      </div>
+      {phase === 'loader' && (
+        <div className={styles.loaderWrap}>
+          <span className={styles.loaderPercent}>{percent}</span>
+          <span className={styles.loaderSign}>%</span>
+        </div>
+      )}
+
+      {phase === 'greeting' && (
+        <div className={styles.bar}>
+          <div
+            className={styles.barFill}
+            style={{ width: `${Math.round(((index + 1) / greetings.length) * 100)}%` }}
+          />
+        </div>
+      )}
     </div>
   );
 }

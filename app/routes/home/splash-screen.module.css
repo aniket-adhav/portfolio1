@@ -2,7 +2,7 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--background, #ffffff);
+  background: var(--background, #f2f2f2);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -14,6 +14,8 @@
 .splash[data-leaving='true'] {
   transform: translateY(-100%);
 }
+
+/* ── Greeting ── */
 
 .inner {
   position: relative;
@@ -28,7 +30,7 @@
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: var(--fontWeightMedium, 500);
-  color: var(--text, #0a0a0a);
+  color: var(--text, #111111);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   line-height: 1;
@@ -37,22 +39,36 @@
   animation: wordIn 0.15s ease forwards;
 }
 
-.percentCounter {
+.bar {
   position: absolute;
-  bottom: 48px;
-  right: 52px;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: color-mix(in lab, var(--text, #111) 10%, transparent);
+}
+
+.barFill {
+  height: 100%;
+  background: var(--text, #111111);
+  transition: width 0.18s linear;
+}
+
+/* ── Percentage loader (refresh) ── */
+
+.loaderWrap {
   display: flex;
   align-items: baseline;
-  gap: 2px;
+  gap: 4px;
   line-height: 1;
 }
 
-.percentValue {
+.loaderPercent {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-size: clamp(4rem, 12vw, 9rem);
   font-weight: var(--fontWeightBold, 700);
-  color: var(--text, #0a0a0a);
-  letter-spacing: -0.03em;
+  color: var(--text, #111111);
+  letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   min-width: 3ch;
@@ -60,30 +76,14 @@
   display: inline-block;
 }
 
-.percentSign {
+.loaderSign {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(1.2rem, 2.5vw, 2rem);
+  font-size: clamp(1.5rem, 4vw, 3rem);
   font-weight: var(--fontWeightMedium, 500);
-  color: color-mix(in lab, var(--text, #0a0a0a) 50%, transparent);
-  letter-spacing: 0;
+  color: color-mix(in lab, var(--text, #111) 45%, transparent);
   line-height: 1;
   align-self: flex-end;
-  margin-bottom: 0.4em;
-}
-
-.bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  width: 100%;
-  background: color-mix(in lab, var(--text, #0a0a0a) 8%, transparent);
-}
-
-.barFill {
-  height: 100%;
-  background: var(--text, #0a0a0a);
-  transition: width 0.05s linear;
+  margin-bottom: 0.3em;
 }
 
 @keyframes wordIn {
