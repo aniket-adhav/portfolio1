@@ -3,11 +3,15 @@
   width: 100%;
   max-height: 1080px;
   padding-bottom: var(--spaceL);
-  margin: 160px 0;
+  margin: 120px 0;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+
+  &[data-alternate='true'] {
+    margin-bottom: 200px;
+  }
 
   @media (--mediaDesktop) {
     margin: var(--space2XL) 0;
