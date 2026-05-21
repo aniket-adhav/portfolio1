@@ -8,25 +8,19 @@
 }
 
 @keyframes ring-spin-slow {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
-@keyframes ring-spin-reverse {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(-360deg); }
+@keyframes orb-breathe {
+  0%, 100% { transform: translate(-50%, -50%) scale(1);    opacity: 0.8; }
+  50%       { transform: translate(-50%, -50%) scale(1.15); opacity: 1;   }
 }
 
-@keyframes scan-sweep {
-  0%   { top: 0%; opacity: 0; }
-  5%   { opacity: 0.7; }
-  95%  { opacity: 0.7; }
-  100% { top: 100%; opacity: 0; }
-}
-
-@keyframes dot-pulse {
-  0%, 100% { transform: scale(1);   opacity: 0.9; box-shadow: 0 0 0 0 color-mix(in lab, var(--primary) 60%, transparent); }
-  50%       { transform: scale(1.4); opacity: 1;   box-shadow: 0 0 0 6px color-mix(in lab, var(--primary) 0%, transparent); }
+@keyframes float-particle {
+  0%, 100% { transform: translateY(0px)   scale(1);    opacity: 0.6; }
+  33%       { transform: translateY(-10px) scale(1.2);  opacity: 1;   }
+  66%       { transform: translateY(6px)  scale(0.85); opacity: 0.4; }
 }
 
 @keyframes badge-in {
@@ -249,7 +243,7 @@
 .imageWrap {
   position: relative;
   width: 100%;
-  max-width: 380px;
+  max-width: 360px;
   margin: 0 auto;
   opacity: 0;
   transition: opacity var(--durationXL) ease var(--durationM);
@@ -257,20 +251,8 @@
   &[data-visible='true'] {
     opacity: 1;
 
-    & .cornerTL,
-    & .cornerTR,
-    & .cornerBL,
-    & .cornerBR {
-      animation: corner-draw 0.4s ease forwards;
-      animation-delay: 0.5s;
-    }
-
     & .badge {
       animation: badge-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s both;
-    }
-
-    & .chipRow {
-      animation: chip-in 0.5s ease 1.1s both;
     }
   }
 
@@ -280,15 +262,114 @@
   }
 }
 
+/* ── Glow orb behind the photo ── */
+.glowOrb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    color-mix(in lab, var(--primary) 28%, transparent) 0%,
+    color-mix(in lab, var(--primary) 10%, transparent) 45%,
+    transparent 72%
+  );
+  animation: orb-breathe 4s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Single clean rotating border ── */
+.borderRing {
+  position: absolute;
+  inset: -3px;
+  border-radius: 22px;
+  background: conic-gradient(
+    from 0deg,
+    color-mix(in lab, var(--primary) 80%, transparent) 0deg,
+    color-mix(in lab, var(--primary) 20%, transparent) 60deg,
+    transparent 120deg,
+    transparent 240deg,
+    color-mix(in lab, var(--primary) 40%, transparent) 300deg,
+    color-mix(in lab, var(--primary) 80%, transparent) 360deg
+  );
+  animation: ring-spin-slow 5s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+
+  /* Mask out the interior so only a thin border shows */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: var(--background);
+    border-radius: 19px;
+  }
+}
+
+/* ── Floating particles ── */
+.p1, .p2, .p3, .p4, .p5 {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--primary);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.p1 {
+  width: 6px; height: 6px;
+  top: 12%;  left: -12px;
+  opacity: 0.7;
+  animation: float-particle 5s ease-in-out infinite;
+}
+
+.p2 {
+  width: 4px; height: 4px;
+  top: 65%;  right: -14px;
+  opacity: 0.5;
+  animation: float-particle 6.5s ease-in-out 1s infinite reverse;
+}
+
+.p3 {
+  width: 5px; height: 5px;
+  top: -10px; left: 30%;
+  opacity: 0.6;
+  animation: float-particle 4.5s ease-in-out 0.5s infinite;
+}
+
+.p4 {
+  width: 3px; height: 3px;
+  bottom: -8px; right: 25%;
+  opacity: 0.45;
+  animation: float-particle 7s ease-in-out 2s infinite reverse;
+}
+
+.p5 {
+  width: 5px; height: 5px;
+  top: 40%;  left: -16px;
+  opacity: 0.55;
+  animation: float-particle 5.5s ease-in-out 1.5s infinite;
+}
+
+/* ── Photo ── */
 .photo {
+  position: relative;
+  z-index: 2;
   width: 100%;
   border-radius: 18px;
   display: block;
   object-fit: cover;
   object-position: top center;
   aspect-ratio: 3 / 4;
-  animation: glow-pulse 3.5s ease-in-out infinite;
-  border: 1px solid color-mix(in lab, var(--primary) 35%, transparent);
+  filter: brightness(0.88) contrast(1.04);
+
+  /* Lighter in dark mode */
+  @media (prefers-color-scheme: dark) {
+    filter: brightness(1.18) contrast(1.02) saturate(1.05);
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -301,7 +382,7 @@
   bottom: 0;
   transform: translate3d(50%, -20%, 0);
   height: 100%;
-  z-index: 3;
+  z-index: 6;
   opacity: 0;
   transition: opacity var(--durationM) ease var(--durationL);
   fill: var(--textTitle);
@@ -312,73 +393,28 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
-   CORNER BRACKET DECORATIONS
-═══════════════════════════════════════════════════════════ */
-
-.cornerTL,
-.cornerTR,
-.cornerBL,
-.cornerBR {
-  position: absolute;
-  width: 28px;
-  height: 28px;
-  opacity: 0;
-  z-index: 2;
-}
-
-.cornerTL {
-  top: -8px;
-  left: -8px;
-  border-top: 2.5px solid var(--primary);
-  border-left: 2.5px solid var(--primary);
-  border-radius: 4px 0 0 0;
-}
-
-.cornerTR {
-  top: -8px;
-  right: -8px;
-  border-top: 2.5px solid var(--primary);
-  border-right: 2.5px solid var(--primary);
-  border-radius: 0 4px 0 0;
-}
-
-.cornerBL {
-  bottom: -8px;
-  left: -8px;
-  border-bottom: 2.5px solid var(--primary);
-  border-left: 2.5px solid var(--primary);
-  border-radius: 0 0 0 4px;
-}
-
-.cornerBR {
-  bottom: -8px;
-  right: -8px;
-  border-bottom: 2.5px solid var(--primary);
-  border-right: 2.5px solid var(--primary);
-  border-radius: 0 0 4px 0;
-}
-
-/* ═══════════════════════════════════════════════════════════
    FLOATING NAME BADGE
 ═══════════════════════════════════════════════════════════ */
 
 .badge {
   position: absolute;
-  bottom: -20px;
+  bottom: -22px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 3px;
-  background: color-mix(in lab, var(--background) 85%, var(--primary));
+  background: color-mix(in lab, var(--background) 82%, var(--primary));
   border: 1px solid color-mix(in lab, var(--primary) 45%, transparent);
   border-radius: 12px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   white-space: nowrap;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 24px color-mix(in lab, var(--primary) 20%, transparent);
-  z-index: 3;
+  backdrop-filter: blur(14px);
+  box-shadow:
+    0 8px 24px color-mix(in lab, var(--primary) 18%, transparent),
+    inset 0 1px 0 color-mix(in lab, var(--primary) 20%, transparent);
+  z-index: 6;
 }
 
 .badgeName {
@@ -393,110 +429,4 @@
   font-weight: var(--fontWeightMedium);
   color: var(--primary);
   letter-spacing: 0.06em;
-}
-
-/* ═══════════════════════════════════════════════════════════
-   ANIMATED RINGS & EFFECTS AROUND IMAGE
-═══════════════════════════════════════════════════════════ */
-
-/* Outer slow-spinning conic ring */
-.ringOuter {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(100% + 32px);
-  height: calc(100% + 32px);
-  border-radius: 22px;
-  transform: translate(-50%, -50%);
-  background: conic-gradient(
-    from 0deg,
-    transparent 0%,
-    color-mix(in lab, var(--primary) 70%, transparent) 15%,
-    transparent 30%,
-    transparent 60%,
-    color-mix(in lab, var(--primary) 40%, transparent) 75%,
-    transparent 90%
-  );
-  animation: ring-spin-slow 6s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-  mask: linear-gradient(white, white) content-box,
-        linear-gradient(white, white);
-  mask-composite: exclude;
-  padding: 2px;
-  border-radius: 22px;
-}
-
-/* Middle counter-rotating dashed ring */
-.ringMiddle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: calc(100% + 56px);
-  height: calc(100% + 56px);
-  border-radius: 28px;
-  transform: translate(-50%, -50%);
-  border: 1.5px dashed color-mix(in lab, var(--primary) 30%, transparent);
-  animation: ring-spin-reverse 10s linear infinite;
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Scanning light beam that sweeps top→bottom */
-.scanLine {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    color-mix(in lab, var(--primary) 80%, white) 40%,
-    color-mix(in lab, var(--primary) 80%, white) 60%,
-    transparent 100%
-  );
-  border-radius: 0 0 2px 2px;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 4;
-  animation: scan-sweep 3.5s ease-in-out infinite;
-}
-
-/* Corner pulsing dots */
-.dotTL,
-.dotTR,
-.dotBL,
-.dotBR {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-  z-index: 4;
-  pointer-events: none;
-}
-
-.dotTL {
-  top: -4px;
-  left: -4px;
-  animation: dot-pulse 2.4s ease-in-out infinite;
-}
-
-.dotTR {
-  top: -4px;
-  right: -4px;
-  animation: dot-pulse 2.4s ease-in-out 0.6s infinite;
-}
-
-.dotBL {
-  bottom: -4px;
-  left: -4px;
-  animation: dot-pulse 2.4s ease-in-out 1.2s infinite;
-}
-
-.dotBR {
-  bottom: -4px;
-  right: -4px;
-  animation: dot-pulse 2.4s ease-in-out 1.8s infinite;
 }

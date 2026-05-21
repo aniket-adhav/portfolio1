@@ -109,35 +109,38 @@ export const Profile = ({ id, visible, sectionRef }) => {
             {/* ── Right: photo ── */}
             <div className={styles.column}>
               <div className={styles.imageWrap} data-visible={visible}>
-                {/* Corner bracket decorations */}
-                <span className={styles.cornerTL} aria-hidden="true" />
-                <span className={styles.cornerTR} aria-hidden="true" />
-                <span className={styles.cornerBL} aria-hidden="true" />
-                <span className={styles.cornerBR} aria-hidden="true" />
 
+                {/* Background glow orb behind photo */}
+                <span className={styles.glowOrb} aria-hidden="true" />
+
+                {/* Rotating border ring */}
+                <span className={styles.borderRing} aria-hidden="true" />
+
+                {/* Floating particles */}
+                <span className={styles.p1} aria-hidden="true" />
+                <span className={styles.p2} aria-hidden="true" />
+                <span className={styles.p3} aria-hidden="true" />
+                <span className={styles.p4} aria-hidden="true" />
+                <span className={styles.p5} aria-hidden="true" />
+
+                {/* Photo */}
                 <img
                   src="/aniket-photo.png"
                   alt="Aniket Adhav — Full Stack Web and Android Developer"
                   className={styles.photo}
                 />
+
+                {/* English vertical text */}
                 <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
                   <use href={`${profileEn}#profile-en`} />
                 </svg>
 
-                {/* Floating name badge */}
+                {/* Name badge */}
                 <div className={styles.badge} data-visible={visible}>
                   <span className={styles.badgeName}>Aniket Adhav</span>
                   <span className={styles.badgeRole}>Full Stack &amp; Android Dev</span>
                 </div>
 
-                {/* Decorative animated rings */}
-                <span className={styles.ringOuter} aria-hidden="true" />
-                <span className={styles.ringMiddle} aria-hidden="true" />
-                <span className={styles.scanLine} aria-hidden="true" />
-                <span className={styles.dotTL} aria-hidden="true" />
-                <span className={styles.dotTR} aria-hidden="true" />
-                <span className={styles.dotBL} aria-hidden="true" />
-                <span className={styles.dotBR} aria-hidden="true" />
               </div>
             </div>
 
