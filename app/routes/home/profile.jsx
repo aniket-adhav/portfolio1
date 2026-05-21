@@ -167,15 +167,6 @@ export const Profile = ({ id, visible, sectionRef }) => {
                   <li>🏆 Hackathon winner &amp; top DSA performer with <strong>1800+ LeetCode rating</strong></li>
                 </ul>
 
-                <Button
-                  secondary
-                  className={styles.button}
-                  data-visible={visible}
-                  href="/contact"
-                  icon="send"
-                >
-                  Send me a message
-                </Button>
               </div>
 
               {/* Right: photo */}
