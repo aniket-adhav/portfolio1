@@ -1281,28 +1281,26 @@
 .certImageWrap {
   position: relative;
   width: 100%;
-  height: 190px;
+  height: 260px;
   overflow: hidden;
   flex-shrink: 0;
+  background: color-mix(in lab, var(--text) 4%, var(--background));
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .certImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  padding: 10px;
   transition: transform 0.5s ease;
 }
 
 .certImageOverlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 40%,
-    color-mix(in lab, var(--background) 80%, transparent) 100%
-  );
-  pointer-events: none;
+  display: none;
 }
 
 .certBody {
