@@ -33,7 +33,8 @@ function shuffle(content, output, position) {
       return { type: CharType.Glyph, value: glyphs[rand] };
     }
 
-    return { type: CharType.Glyph, value: output[index].value };
+    const rand = Math.floor(Math.random() * glyphs.length);
+    return { type: CharType.Glyph, value: output[index]?.value ?? glyphs[rand] };
   });
 }
 
