@@ -17,7 +17,6 @@ const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
 
 export function SplashScreen() {
-  // 'idle' on SSR → covers content. Client sets 'greeting', 'loader', or 'done'
   const [phase, setPhase] = useState('idle');
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
@@ -28,7 +27,6 @@ export function SplashScreen() {
     const seen = sessionStorage.getItem('splashShown');
 
     if (!seen) {
-      // ── FIRST VISIT: greeting splash ──────────────────────
       setPhase('greeting');
 
       let i = 0;
@@ -50,9 +48,8 @@ export function SplashScreen() {
 
       return () => clearInterval(interval);
     } else {
-      // ── REFRESH: percentage loader (only on true browser reload, not SPA back-nav) ──
       const navType = performance.getEntriesByType?.('navigation')[0]?.type;
-      if (navType !== 'reload') { setPhase('done'); return; } // back/forward → hide splash immediately
+      if (navType !== 'reload') { setPhase('done'); return; }
       setPhase('loader');
       const start = performance.now();
 
@@ -80,6 +77,15 @@ export function SplashScreen() {
 
   return (
     <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
+
+      {/* ── Background title text ── */}
+      <div className={styles.bgText} aria-hidden>
+        <span className={styles.bgLine}>FULL STACK</span>
+        <span className={styles.bgLine}>WEB &amp; ANDROID</span>
+        <span className={styles.bgLine}>DEVELOPER</span>
+      </div>
+
+      {/* ── Center content ── */}
       {phase === 'greeting' && (
         <div className={styles.inner}>
           <span className={styles.word} key={index}>
@@ -95,6 +101,7 @@ export function SplashScreen() {
         </div>
       )}
 
+      {/* ── Bottom progress bar (greeting only) ── */}
       {phase === 'greeting' && (
         <div className={styles.bar}>
           <div
