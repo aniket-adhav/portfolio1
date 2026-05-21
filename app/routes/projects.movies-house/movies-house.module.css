@@ -42,7 +42,9 @@
 
 .heroMeta {
   max-width: 720px;
-  margin: var(--space3XL) auto 0;
+  margin: var(--space4XL) auto 0;
+  padding-top: var(--spaceL);
+  border-top: 1px solid color-mix(in lab, var(--text) 10%, transparent);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -50,11 +52,13 @@
   gap: var(--spaceL);
 
   @media (--mediaTablet) {
-    margin-top: var(--space2XL);
+    margin-top: var(--space3XL);
+    padding-top: var(--spaceM);
   }
 
   @media (--mediaMobile) {
-    margin-top: var(--spaceXL);
+    margin-top: var(--space2XL);
+    padding-top: var(--spaceM);
   }
 }
 

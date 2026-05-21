@@ -44,7 +44,7 @@ export function CivicAssist() {
         <header className={styles.header}>
           <div className={styles.headerContent}>
             <div className={styles.headerText}>
-              <div className={styles.tag}>Full Stack · Android · Web App</div>
+              <div className={styles.tag}>Full Stack · Web App</div>
               <h1 className={styles.title}>{title}</h1>
               <p className={styles.description}>{description}</p>
               <div className={styles.headerButtons}>

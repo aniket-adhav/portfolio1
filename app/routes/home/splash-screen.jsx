@@ -51,7 +51,9 @@ export function SplashScreen() {
 
       return () => clearInterval(interval);
     } else {
-      // ── REFRESH: percentage loader ────────────────────────
+      // ── REFRESH: percentage loader (only on true browser reload, not SPA back-nav) ──
+      const navType = performance.getEntriesByType?.('navigation')[0]?.type;
+      if (navType !== 'reload') return; // back/forward or link navigation → skip loader
       setPhase('loader');
       const start = performance.now();
 
