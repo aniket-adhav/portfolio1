@@ -236,7 +236,6 @@ export const Contact = () => {
               method="post"
               ref={nodeRef}
             >
-              <div className={styles.formGlow} />
 
               <Heading
                 className={styles.formTitle}

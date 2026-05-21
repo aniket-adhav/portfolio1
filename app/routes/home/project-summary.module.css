@@ -10,7 +10,7 @@
   justify-content: center;
 
   &[data-alternate='true'] {
-    margin-bottom: 200px;
+    margin-bottom: 160px;
   }
 
   @media (--mediaDesktop) {
