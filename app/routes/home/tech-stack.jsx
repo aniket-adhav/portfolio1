@@ -2,7 +2,7 @@ import styles from './tech-stack.module.css';
 
 // 7-row pyramid: 12 → 10 → 8 → 6 → 4 → 2 → 1 = 43 skills
 const techRows = [
-  // Row 1 — Core Languages + Web (12) ← widest
+  // Row 1 — Core Languages + Web (12)
   [
     { name: 'C++',          icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg',      url: 'https://isocpp.org' },
     { name: 'Java',         icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg',                url: 'https://java.com' },
@@ -30,7 +30,7 @@ const techRows = [
     { name: 'Material UI',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg',   url: 'https://material.io' },
     { name: 'Room DB',      icon: 'https://cdn.simpleicons.org/android/3DDC84',                                               url: 'https://developer.android.com/training/data-storage/room' },
   ],
-  // Row 3 — Android Libraries + Databases (8)
+  // Row 3 — Libraries + Databases (8)
   [
     { name: 'Retrofit',   icon: 'https://cdn.simpleicons.org/retrofit/48B983',                                                 url: 'https://square.github.io/retrofit/' },
     { name: 'Ktor',       icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/ktor/ktor-original.svg',                  url: 'https://ktor.io' },
@@ -41,28 +41,28 @@ const techRows = [
     { name: 'SQLite',     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',               url: 'https://sqlite.org' },
     { name: 'Git',        icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg',                    url: 'https://git-scm.com' },
   ],
-  // Row 4 — Build, Deploy & Version Control (6)
+  // Row 4 — Build, Deploy & Tools (6)
   [
-    { name: 'GitHub',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',   url: 'https://github.com' },
-    { name: 'Gradle',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg',   url: 'https://gradle.org' },
-    { name: 'Vercel',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',   url: 'https://vercel.com' },
-    { name: 'VS Code',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',   url: 'https://code.visualstudio.com' },
-    { name: 'Linux',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',     url: 'https://kernel.org' },
+    { name: 'GitHub',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',    url: 'https://github.com' },
+    { name: 'Gradle',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/gradle/gradle-original.svg',    url: 'https://gradle.org' },
+    { name: 'Vercel',   icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg',    url: 'https://vercel.com' },
+    { name: 'VS Code',  icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg',    url: 'https://code.visualstudio.com' },
+    { name: 'Linux',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg',      url: 'https://kernel.org' },
     { name: 'npm',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg', url: 'https://npmjs.com' },
   ],
   // Row 5 — Tools & Competitive (4)
   [
-    { name: 'Postman',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',            url: 'https://postman.com' },
-    { name: 'LeetCode',   icon: 'https://cdn.simpleicons.org/leetcode/FFA116',                                                 url: 'https://leetcode.com/u/aniket_adhav/' },
-    { name: 'HackerRank', icon: 'https://cdn.simpleicons.org/hackerrank/2EC866',                                               url: 'https://hackerrank.com/aniketadhav' },
-    { name: 'GH Actions', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg', url: 'https://github.com/features/actions' },
+    { name: 'Postman',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg',             url: 'https://postman.com' },
+    { name: 'LeetCode',   icon: 'https://cdn.simpleicons.org/leetcode/FFA116',                                                  url: 'https://leetcode.com/u/aniket_adhav/' },
+    { name: 'HackerRank', icon: 'https://cdn.simpleicons.org/hackerrank/2EC866',                                                url: 'https://hackerrank.com/aniketadhav' },
+    { name: 'GH Actions', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg',  url: 'https://github.com/features/actions' },
   ],
   // Row 6 — Project Libraries (2)
   [
     { name: 'Leaflet',    icon: 'https://cdn.simpleicons.org/leaflet/199900',    url: 'https://leafletjs.com' },
     { name: 'Cloudinary', icon: 'https://cdn.simpleicons.org/cloudinary/3448C5', url: 'https://cloudinary.com' },
   ],
-  // Row 7 — Animation (1) ← tip
+  // Row 7 — Animation (1)
   [
     { name: 'Framer Motion', icon: 'https://cdn.simpleicons.org/framer/0055FF', url: 'https://framer.com/motion' },
   ],
@@ -76,6 +76,14 @@ export const TechStack = ({ id, sectionRef, visible }) => {
       className={styles.section}
       data-visible={visible}
     >
+      {/* Animated background — pure CSS orbs */}
+      <div className={styles.bg} aria-hidden="true">
+        <div className={styles.orb1} />
+        <div className={styles.orb2} />
+        <div className={styles.orb3} />
+        <div className={styles.grid} />
+      </div>
+
       <div className={styles.content}>
         <div className={styles.heading} data-visible={visible}>
           <div className={styles.label}>Skills &amp; Technologies</div>
@@ -96,9 +104,14 @@ export const TechStack = ({ id, sectionRef, visible }) => {
                   title={item.name}
                   data-cursor="disable"
                 >
-                  <span className={styles.ring} aria-hidden="true" />
-                  <span className={styles.shine} aria-hidden="true" />
-                  <span className={styles.pulse} aria-hidden="true" />
+                  {/* Inner wrapper clips the ring/shine effects */}
+                  <span className={styles.itemInner}>
+                    <span className={styles.ring} aria-hidden="true" />
+                    <span className={styles.shine} aria-hidden="true" />
+                    <span className={styles.pulse} aria-hidden="true" />
+                  </span>
+
+                  {/* Icon floats above the card on hover */}
                   <img
                     src={item.icon}
                     alt={item.name}
