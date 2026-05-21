@@ -58,5 +58,25 @@
   "bluesky": {
     "width": 24,
     "height": 24
+  },
+  "linkedin": {
+    "width": 24,
+    "height": 24
+  },
+  "leetcode": {
+    "width": 24,
+    "height": 24
+  },
+  "instagram": {
+    "width": 24,
+    "height": 24
+  },
+  "download": {
+    "width": 24,
+    "height": 24
+  },
+  "resume": {
+    "width": 24,
+    "height": 24
   }
 }
