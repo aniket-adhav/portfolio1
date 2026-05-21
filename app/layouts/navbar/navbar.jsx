@@ -202,8 +202,8 @@ export const Navbar = () => {
         className={styles.resumeButton}
         onClick={() => setResumeOpen(true)}
         aria-label="View Resume"
-        data-navbar-item
       >
+        <span className={styles.resumeButtonPulse} />
         <Icon icon="resume" className={styles.resumeIcon} />
         <span>Resume</span>
       </button>
