@@ -147,6 +147,7 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 {/* Name badge */}
                 <div className={styles.badge} data-visible={visible}>
                   <span className={styles.badgeName}>Aniket Adhav</span>
+                  <span className={styles.badgeDivider} aria-hidden="true" />
                   <span className={styles.badgeRole}>
                     <span className={styles.badgeDot} />
                     Full Stack &amp; Android Dev
