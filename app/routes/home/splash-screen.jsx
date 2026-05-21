@@ -76,11 +76,6 @@ export function SplashScreen() {
         </span>
       </div>
 
-      <div className={styles.percentCounter}>
-        <span className={styles.percentValue}>{String(percent).padStart(3, '\u2007')}</span>
-        <span className={styles.percentSign}>%</span>
-      </div>
-
       <div className={styles.bar}>
         <div className={styles.barFill} style={{ width: `${percent}%` }} />
       </div>
