@@ -199,14 +199,16 @@ export const Navbar = () => {
         {!isMobile && <ThemeToggle data-navbar-item />}
       </header>
 
-      <Button
-        className={styles.resumeButton}
-        onClick={() => setResumeOpen(true)}
-        icon="resume"
-        secondary
-      >
-        Resume
-      </Button>
+      {!menuOpen && (
+        <Button
+          className={styles.resumeButton}
+          onClick={() => setResumeOpen(true)}
+          icon="resume"
+          secondary
+        >
+          Resume
+        </Button>
+      )}
 
       {resumeOpen && (
         <div className={styles.resumeOverlay} onClick={() => setResumeOpen(false)}>

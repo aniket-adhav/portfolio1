@@ -23,14 +23,11 @@ const greetings = [
 ];
 
 export function SplashScreen() {
-  const [mounted, setMounted] = useState(false);
   const [index, setIndex] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
     let i = 0;
     const interval = setInterval(() => {
       i++;
@@ -50,7 +47,7 @@ export function SplashScreen() {
     return () => clearInterval(interval);
   }, []);
 
-  if (!mounted || done) return null;
+  if (done) return null;
 
   return (
     <div className={styles.splash} data-leaving={leaving}>

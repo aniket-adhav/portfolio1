@@ -12,6 +12,10 @@
   @media (--mediaTablet) {
     padding: var(--space2XL) var(--spaceL) 0;
   }
+
+  @media (--mediaMobile) {
+    padding: var(--space2XL) var(--spaceL) 0 calc(var(--space2XL) + var(--spaceOuter) + var(--spaceS));
+  }
 }
 
 .backLink {
