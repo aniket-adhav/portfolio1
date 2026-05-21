@@ -1,0 +1,163 @@
+.techstack-video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.techstack-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.3;
+}
+
+.techstack-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--backgroundColor) 0%, transparent 30%, transparent 70%, var(--backgroundColor) 100%);
+}
+
+.techstack-new {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 80px 0;
+  background-color: var(--backgroundColor);
+}
+
+.techstack-new:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(194,164,255,0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 50%, rgba(194,164,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.techstack-new:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to bottom, #0b080c 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.techstack-bottom-fade {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to top, #0b080c 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.techstack-content {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.techstack-content h2 {
+  font-size: 70px;
+  text-align: center;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 50px;
+  background: linear-gradient(180deg, #fff, #c2a4ff);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.techstack-pyramid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.techstack-row {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.techstack-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  height: 68px;
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.techstack-item:hover {
+  transform: translateY(-6px) scale(1.08);
+  background: rgba(194,164,255,0.1);
+  border-color: var(--accentColor);
+  box-shadow: 0 8px 30px rgba(194,164,255,0.25);
+}
+
+.techstack-item img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(1.2) brightness(1.5);
+  opacity: 0.85;
+  transition: filter 0.3s ease, opacity 0.3s ease;
+}
+
+.techstack-item:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+.techstack-item span {
+  font-size: 9px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 5px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50px;
+}
+
+.techstack-item:hover span {
+  color: #fff;
+}
