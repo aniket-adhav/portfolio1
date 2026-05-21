@@ -6,12 +6,13 @@ import {
   ScrollRestoration,
   useFetcher,
   useLoaderData,
-  useMatches,
   useNavigation,
   useRouteError,
 } from '@remix-run/react';
 import { createCookieSessionStorage, json } from '@remix-run/node';
 import { ThemeProvider, themeStyles } from '~/components/theme-provider';
+import GothamBook from '~/assets/fonts/gotham-book.woff2';
+import GothamMedium from '~/assets/fonts/gotham-medium.woff2';
 import { useEffect } from 'react';
 import { Error } from '~/layouts/error';
 import { VisuallyHidden } from '~/components/visually-hidden';
@@ -24,17 +25,18 @@ import './global.module.css';
 
 export const links = () => [
   {
-    rel: 'preconnect',
-    href: 'https://fonts.googleapis.com',
+    rel: 'preload',
+    href: GothamMedium,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
   },
   {
-    rel: 'preconnect',
-    href: 'https://fonts.gstatic.com',
-    crossOrigin: 'anonymous',
-  },
-  {
-    rel: 'stylesheet',
-    href: 'https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap',
+    rel: 'preload',
+    href: GothamBook,
+    as: 'font',
+    type: 'font/woff2',
+    crossOrigin: '',
   },
   { rel: 'manifest', href: '/manifest.json' },
   { rel: 'icon', href: '/favicon.ico' },
@@ -79,9 +81,6 @@ export default function App() {
   let { canonicalUrl, theme } = useLoaderData();
   const fetcher = useFetcher();
   const { state } = useNavigation();
-  const matches = useMatches();
-
-  const hideNavbar = matches.some(m => m.handle?.hideNavbar);
 
   if (fetcher.formData?.has('theme')) {
     theme = fetcher.formData.get('theme');
@@ -106,6 +105,7 @@ export default function App() {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Theme color doesn't support oklch so I'm hard coding these hexes for now */}
         <meta name="theme-color" content={theme === 'dark' ? '#111' : '#F2F2F2'} />
         <meta
           name="color-scheme"
@@ -122,10 +122,10 @@ export default function App() {
           <VisuallyHidden showOnFocus as="a" className={styles.skip} href="#main-content">
             Skip to main content
           </VisuallyHidden>
-          {!hideNavbar && <Navbar />}
+          <Navbar />
           <main
             id="main-content"
-            className={hideNavbar ? '' : styles.container}
+            className={styles.container}
             tabIndex={-1}
             data-loading={state === 'loading'}
           >
