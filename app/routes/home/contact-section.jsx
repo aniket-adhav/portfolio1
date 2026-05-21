@@ -208,7 +208,7 @@ export const ContactSection = ({ id, visible, sectionRef }) => {
                 ))}
               </div>
 
-              {/* Resume buttons */}
+              {/* Resume button */}
               <div className={styles.resumeRow} data-visible={vis}>
                 <Button
                   href="/aniket-adhav-resume.pdf"
@@ -218,13 +218,6 @@ export const ContactSection = ({ id, visible, sectionRef }) => {
                   iconEnd="arrow-right"
                 >
                   View Resume
-                </Button>
-                <Button
-                  href="/aniket-adhav-resume.pdf"
-                  download="Aniket_Adhav_Resume.pdf"
-                  icon="download"
-                >
-                  Download
                 </Button>
               </div>
 
