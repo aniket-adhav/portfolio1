@@ -109,6 +109,36 @@ const honours = [
   },
 ];
 
+const certificates = [
+  {
+    title: 'The Complete Android 14 & Kotlin Development Masterclass',
+    issuer: 'Udemy',
+    date: 'Oct 2025',
+    duration: '66.5 hours',
+    badge: '📱',
+    accentColor: '#a435f0',
+    image: '/cert-udemy-android.jpg',
+  },
+  {
+    title: 'Full Stack Web Development',
+    issuer: 'Apna College',
+    date: '2024',
+    duration: 'Alpha DSA with Java',
+    badge: '🌐',
+    accentColor: '#f0a500',
+    image: '/cert-apna-college.png',
+  },
+  {
+    title: 'Decode C++ with DSA Course',
+    issuer: 'Physics Wallah',
+    date: 'Apr 2025',
+    duration: 'June \'24 Program',
+    badge: '🧩',
+    accentColor: '#ff6b00',
+    image: '/cert-pw-dsa.jpg',
+  },
+];
+
 /* ─────────────────────────────────────────────
    PROFILE COMPONENT
 ───────────────────────────────────────────── */
@@ -264,6 +294,43 @@ export const Profile = ({ id, visible, sectionRef }) => {
                     <div className={styles.honourCardBody}>
                       <div className={styles.honourCardTitle}>{h.title}</div>
                       <div className={styles.honourCardDesc}>{h.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* ══════════════════════════════
+                BLOCK 4 — Certificates (full-width)
+            ══════════════════════════════ */}
+            <div className={styles.fullSection} data-visible={visible}>
+              <div className={styles.fullSectionHeader}>
+                <span className={styles.fullSectionLine} />
+                <span className={styles.fullSectionTitle}>🎖️ Certificates</span>
+                <span className={styles.fullSectionLine} />
+              </div>
+
+              <div className={styles.certCardsRow}>
+                {certificates.map((c, i) => (
+                  <div
+                    key={i}
+                    className={styles.certCard}
+                    style={{ animationDelay: `${0.1 + i * 0.14}s`, '--cert-accent': c.accentColor }}
+                  >
+                    <div className={styles.certImageWrap}>
+                      <img src={c.image} alt={c.title} className={styles.certImage} />
+                      <div className={styles.certImageOverlay} />
+                    </div>
+                    <div className={styles.certBody}>
+                      <div className={styles.certIssuerRow}>
+                        <span className={styles.certBadge}>{c.badge}</span>
+                        <span className={styles.certIssuer}>{c.issuer}</span>
+                        <span className={styles.certDot} aria-hidden="true" />
+                        <span className={styles.certDate}>{c.date}</span>
+                      </div>
+                      <div className={styles.certTitle}>{c.title}</div>
+                      <div className={styles.certDuration}>{c.duration}</div>
+                      <div className={styles.certAccentBar} />
                     </div>
                   </div>
                 ))}
