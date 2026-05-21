@@ -78,7 +78,7 @@ export function SplashScreen() {
   if (phase === 'done') return null;
 
   return (
-    <div className={styles.splash} data-leaving={leaving}>
+    <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
       {phase === 'greeting' && (
         <div className={styles.inner}>
           <span className={styles.word} key={index}>
