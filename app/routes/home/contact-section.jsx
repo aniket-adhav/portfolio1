@@ -223,7 +223,6 @@ export const ContactSection = ({ id, visible, sectionRef }) => {
                   href="/aniket-adhav-resume.pdf"
                   download="Aniket_Adhav_Resume.pdf"
                   icon="download"
-                  secondary
                 >
                   Download
                 </Button>

@@ -237,7 +237,9 @@
     position: fixed;
     bottom: 32px;
     right: 32px;
+    left: auto;
     z-index: var(--zIndex4);
+    font-weight: var(--fontWeightBold);
 
     @media (--mediaMobile) {
       bottom: 20px;
