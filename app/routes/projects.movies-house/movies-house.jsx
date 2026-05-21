@@ -39,9 +39,32 @@ export function MoviesHouse() {
           </Link>
         </div>
 
-        <header className={styles.header}>
-          <div className={styles.headerContent}>
-            <div className={styles.headerText}>
+        {/* ── Phone showcase FIRST — title below ── */}
+        <ProjectSection padding="top" className={styles.heroSection}>
+          <ProjectSectionContent data-width="xl">
+            <div className={styles.phoneShowcase}>
+              <div className={`${styles.phoneFrame} ${styles.phoneFrameMain}`}>
+                <Image
+                  src={moviesHeroImg}
+                  width={390}
+                  height={844}
+                  alt="Movies House app home screen showing featured movies, genre filters, and now playing section"
+                  className={styles.phoneImage}
+                />
+              </div>
+              <div className={styles.phoneFrame}>
+                <Image
+                  src={moviesListImg}
+                  width={390}
+                  height={844}
+                  alt="Movies House app genre browse screen showing action movies with ratings"
+                  className={styles.phoneImage}
+                />
+              </div>
+            </div>
+
+            {/* Title sits clearly below both phones */}
+            <div className={styles.heroMeta}>
               <div className={styles.tag}>Android · Jetpack Compose · MVVM</div>
               <h1 className={styles.title}>{title}</h1>
               <p className={styles.description}>{description}</p>
@@ -57,6 +80,12 @@ export function MoviesHouse() {
                 </Button>
               </div>
             </div>
+          </ProjectSectionContent>
+        </ProjectSection>
+
+        {/* Tech stack */}
+        <ProjectSection className={styles.techSection}>
+          <ProjectSectionContent>
             <ul className={styles.techList}>
               <li className={styles.techLabel}>Tech Stack</li>
               {[
@@ -73,33 +102,6 @@ export function MoviesHouse() {
                 <li key={tech} className={styles.techItem}>{tech}</li>
               ))}
             </ul>
-          </div>
-        </header>
-
-        <ProjectSection padding="top" className={styles.heroSection}>
-          <ProjectSectionContent data-width="xl">
-            <div className={styles.phoneShowcase}>
-              <div className={`${styles.phoneFrame} ${styles.phoneFrameMain}`}>
-                <Image
-                  src={moviesHeroImg}
-                  width={390}
-                  height={844}
-                  alt="Movies House app home screen showing featured movies, genre filters, and now playing section"
-                  className={styles.phoneImage}
-                />
-                <p className={styles.phoneCaption}>Home Screen — Featured movies, genres & now playing</p>
-              </div>
-              <div className={styles.phoneFrame}>
-                <Image
-                  src={moviesListImg}
-                  width={390}
-                  height={844}
-                  alt="Movies House app genre browse screen showing action movies with ratings"
-                  className={styles.phoneImage}
-                />
-                <p className={styles.phoneCaption}>Genre Browse — Action movies with TMDB ratings</p>
-              </div>
-            </div>
           </ProjectSectionContent>
         </ProjectSection>
 

@@ -40,40 +40,26 @@
   }
 }
 
-.header {
-  width: 100%;
-  padding: var(--space3XL) 0 var(--space4XL);
-
-  @media (--mediaTablet) {
-    padding: var(--space2XL) 0 var(--space3XL);
-  }
-}
-
-.headerContent {
-  max-width: var(--maxWidthL);
-  margin: 0 auto;
-  padding: 0 var(--spaceXL);
-  display: grid;
-  grid-template-columns: 1fr 260px;
-  gap: var(--space4XL);
-  align-items: start;
-
-  @media (max-width: 1100px) {
-    grid-template-columns: 1fr 200px;
-    gap: var(--space2XL);
-  }
-
-  @media (--mediaTablet) {
-    grid-template-columns: 1fr;
-    gap: var(--space2XL);
-    padding: 0 var(--spaceL);
-  }
-}
-
-.headerText {
+.heroMeta {
+  max-width: 720px;
+  margin: var(--space3XL) auto 0;
+  text-align: center;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: var(--spaceL);
+
+  @media (--mediaTablet) {
+    margin-top: var(--space2XL);
+  }
+
+  @media (--mediaMobile) {
+    margin-top: var(--spaceXL);
+  }
+}
+
+.techSection {
+  padding-top: 0;
 }
 
 .tag {
@@ -110,14 +96,12 @@
 
 .techList {
   list-style: none;
-  margin: var(--spaceL) 0 0;
+  margin: 0;
   padding: 0;
-
-  @media (--mediaTablet) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spaceS);
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spaceS);
 }
 
 .techLabel {
@@ -126,31 +110,15 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--textLight);
-  padding-bottom: var(--spaceM);
-  border-bottom: 1px solid color-mix(in lab, var(--text) 12%, transparent);
-  margin-bottom: var(--spaceM);
-
-  @media (--mediaTablet) {
-    width: 100%;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
+  margin-right: var(--spaceS);
 }
 
 .techItem {
-  padding: var(--spaceM) 0;
-  font-size: var(--fontSizeBodyS);
+  padding: var(--spaceXS) var(--spaceM);
+  font-size: var(--fontSizeBodyXS);
   color: var(--text);
-  border-bottom: 1px solid color-mix(in lab, var(--text) 10%, transparent);
-
-  @media (--mediaTablet) {
-    padding: var(--spaceXS) var(--spaceM);
-    border-bottom: none;
-    border: 1px solid color-mix(in lab, var(--text) 15%, transparent);
-    border-radius: 4px;
-    font-size: var(--fontSizeBodyXS);
-  }
+  border: 1px solid color-mix(in lab, var(--text) 15%, transparent);
+  border-radius: 4px;
 }
 
 .heroSection {
