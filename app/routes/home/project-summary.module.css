@@ -214,14 +214,14 @@
 
   &[data-device='phone'] {
     position: absolute;
-    bottom: 23%;
-    transform: translateY(50%);
+    bottom: 2%;
+    transform: none;
     width: 100%;
     transition-delay: 800ms;
 
     @media (--mediaTablet) {
       width: 80%;
-      bottom: 23%;
+      bottom: 2%;
     }
   }
 }
