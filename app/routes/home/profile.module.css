@@ -732,6 +732,75 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
+   LIVE TYPING CARD
+═══════════════════════════════════════════════════════════ */
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes typing-card-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.typingCard {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 290px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 18px;
+  border-radius: 12px;
+  background: color-mix(in lab, var(--background) 60%, var(--text) 3%);
+  border: 1px solid color-mix(in lab, var(--text) 8%, transparent);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  min-height: 48px;
+  opacity: 0;
+  transition: border-color 0.25s ease;
+
+  &[data-visible='true'] {
+    animation: typing-card-in 0.5s ease 1.3s both;
+  }
+
+  &:hover {
+    border-color: color-mix(in lab, var(--primary) 40%, transparent);
+    background: color-mix(in lab, var(--primary) 4%, var(--background));
+  }
+}
+
+.typingPrompt {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  flex-shrink: 0;
+  letter-spacing: 0.02em;
+  user-select: none;
+}
+
+.typingText {
+  font-size: 12px;
+  color: var(--textBody);
+  flex: 1;
+  letter-spacing: 0.02em;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.typingCursor {
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--primary);
+  border-radius: 1px;
+  flex-shrink: 0;
+  animation: cursor-blink 0.8s ease-in-out infinite;
+}
+
+/* ═══════════════════════════════════════════════════════════
    SOCIAL LINKS ROW
 ═══════════════════════════════════════════════════════════ */
 

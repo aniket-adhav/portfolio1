@@ -4,9 +4,61 @@ import { Divider } from '~/components/divider';
 import { Heading } from '~/components/heading';
 import { Section } from '~/components/section';
 import { Transition } from '~/components/transition';
-import { Fragment, useState } from 'react';
+import { Fragment, useState, useEffect, useRef } from 'react';
 import profileEn from './profile-en.svg';
 import styles from './profile.module.css';
+
+const TYPING_LINES = [
+  'Building Civic Assist v2 ...',
+  'Solving DSA problems ...',
+  'Open to collaborations ...',
+  'Crafting Android apps ...',
+  'Contributing to open source ...',
+  'Always learning something new ...',
+];
+
+function LiveTypingCard({ visible }) {
+  const [displayed, setDisplayed] = useState('');
+  const [lineIdx, setLineIdx]     = useState(0);
+  const [typing, setTyping]       = useState(true);
+  const timeoutRef                = useRef(null);
+
+  useEffect(() => {
+    if (!visible) return;
+    const target = TYPING_LINES[lineIdx];
+
+    if (typing) {
+      if (displayed.length < target.length) {
+        timeoutRef.current = setTimeout(
+          () => setDisplayed(target.slice(0, displayed.length + 1)),
+          52
+        );
+      } else {
+        timeoutRef.current = setTimeout(() => setTyping(false), 1800);
+      }
+    } else {
+      if (displayed.length > 0) {
+        timeoutRef.current = setTimeout(
+          () => setDisplayed(displayed.slice(0, -1)),
+          30
+        );
+      } else {
+        setLineIdx(i => (i + 1) % TYPING_LINES.length);
+        setTyping(true);
+      }
+    }
+
+    return () => clearTimeout(timeoutRef.current);
+  }, [visible, displayed, typing, lineIdx]);
+
+  return (
+    <div className={styles.typingCard} data-visible={visible}>
+      <span className={styles.typingPrompt}>~$</span>
+      <span className={styles.typingText}>{displayed}</span>
+      <span className={styles.typingCursor} aria-hidden="true" />
+    </div>
+  );
+}
 
 const education = [
   {
@@ -204,6 +256,8 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 </span>
               </div>
 
+              {/* Live typing card */}
+              <LiveTypingCard visible={visible} />
 
             </div>
 
