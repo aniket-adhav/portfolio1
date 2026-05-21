@@ -6,6 +6,7 @@ import { Section } from '~/components/section';
 import { Text } from '~/components/text';
 import { Transition } from '~/components/transition';
 import { Fragment, useState } from 'react';
+import profileEn from './profile-en.svg';
 import styles from './profile.module.css';
 
 const ProfileText = ({ visible, titleId }) => (
@@ -115,10 +116,13 @@ export const Profile = ({ id, visible, sectionRef }) => {
                 <span className={styles.cornerBR} aria-hidden="true" />
 
                 <img
-                  src="/aniket-photo.jpeg"
+                  src="/aniket-photo.png"
                   alt="Aniket Adhav — Full Stack Web and Android Developer"
                   className={styles.photo}
                 />
+                <svg className={styles.svg} data-visible={visible} viewBox="0 0 136 766">
+                  <use href={`${profileEn}#profile-en`} />
+                </svg>
 
                 {/* Floating name badge */}
                 <div className={styles.badge} data-visible={visible}>

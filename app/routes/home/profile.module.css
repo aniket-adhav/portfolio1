@@ -270,6 +270,26 @@
 }
 
 /* ═══════════════════════════════════════════════════════════
+   ENGLISH VERTICAL TEXT DECORATION
+═══════════════════════════════════════════════════════════ */
+
+.svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transform: translate3d(50%, -20%, 0);
+  height: 100%;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity var(--durationM) ease var(--durationL);
+  fill: var(--textTitle);
+
+  &[data-visible='true'] {
+    opacity: 1;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
    CORNER BRACKET DECORATIONS
 ═══════════════════════════════════════════════════════════ */
 
