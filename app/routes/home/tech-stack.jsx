@@ -96,9 +96,9 @@ export const TechStack = ({ id, sectionRef, visible }) => {
                   title={item.name}
                   data-cursor="disable"
                 >
-                  <span className={styles.ring} aria-hidden="true" />
+                  <span className={styles.traceBorder} aria-hidden="true" />
+                  <span className={styles.centerPulse} aria-hidden="true" />
                   <span className={styles.shine} aria-hidden="true" />
-                  <span className={styles.pulse} aria-hidden="true" />
                   <img
                     src={item.icon}
                     alt={item.name}
