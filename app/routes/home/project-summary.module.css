@@ -69,6 +69,13 @@
     flex-direction: column-reverse;
     height: auto;
   }
+
+  @media (--mediaMobile) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spaceXL);
+  }
 }
 
 .details {
@@ -90,6 +97,18 @@
       padding-left: 0;
     }
   }
+
+  @media (--mediaMobile) {
+    grid-row: unset;
+    grid-column: unset;
+    max-width: 100%;
+    justify-self: unset;
+    padding-left: 0;
+
+    .summary[data-alternate='true'] & {
+      padding-left: 0;
+    }
+  }
 }
 
 .preview {
@@ -103,7 +122,7 @@
 
   @media (--mediaMobile) {
     height: auto;
-    max-height: 50vh;
+    width: 100%;
     overflow: visible;
   }
 }
@@ -177,10 +196,13 @@
     }
 
     @media (--mediaMobile) {
-      --width: 100%;
-
+      top: 0;
       left: 0;
-      max-height: 44vh;
+      width: 100%;
+      min-width: unset;
+      max-height: unset;
+      height: 75vw;
+      aspect-ratio: unset;
     }
   }
 }

@@ -38,7 +38,7 @@ export function ProjectSummary({
   const titleId = `${id}-title`;
   const isMobile = width <= media.tablet;
   const indexText = index < 10 ? `0${index}` : index;
-  const phoneSizes = `(max-width: ${media.tablet}px) 30vw, 20vw`;
+  const phoneSizes = `(max-width: ${media.tablet}px) 80vw, 20vw`;
   const laptopSizes = `(max-width: ${media.tablet}px) 80vw, 40vw`;
 
   function handleModelLoad() {
@@ -206,7 +206,13 @@ export function ProjectSummary({
                   {renderPreview(visible)}
                 </>
               )}
-              {(alternate || isMobile) && (
+              {(alternate && !isMobile) && (
+                <>
+                  {renderPreview(visible)}
+                  {renderDetails(visible)}
+                </>
+              )}
+              {isMobile && (
                 <>
                   {renderPreview(visible)}
                   {renderDetails(visible)}
