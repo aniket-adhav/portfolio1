@@ -18,9 +18,25 @@
     & > * {
       width: fit-content;
       justify-content: center;
-      font-size: var(--fontSizeBodyM);
-      padding-left: var(--space2XL);
-      padding-right: var(--space2XL);
+      font-size: var(--fontSizeBodyS);
+      padding-left: var(--spaceL);
+      padding-right: var(--spaceL);
     }
+  }
+}
+
+.githubBtnFull {
+  display: inline;
+
+  @media (--mediaMobile) {
+    display: none;
+  }
+}
+
+.githubBtnShort {
+  display: none;
+
+  @media (--mediaMobile) {
+    display: inline;
   }
 }

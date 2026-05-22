@@ -197,7 +197,8 @@ export const Home = () => {
           iconEnd="arrow-right"
           secondary
         >
-          See all projects on GitHub
+          <span className={styles.githubBtnFull}>See all projects on GitHub</span>
+          <span className={styles.githubBtnShort}>GitHub Projects</span>
         </Button>
       </div>
       <TechStack
