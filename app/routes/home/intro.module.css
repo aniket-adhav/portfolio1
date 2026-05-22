@@ -90,6 +90,15 @@
   }
 }
 
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 @keyframes reveal {
   0% {
     transform: scale3d(0, 1, 1);
@@ -228,13 +237,7 @@
   top: 0.05em;
 
   &[data-status='entering'] {
-    &:global {
-      animation-name: fade-in;
-    }
-
-    @media (--mediaUseMotion) {
-      animation-name: introLine;
-    }
+    animation-name: introLine;
   }
 
   &[data-status='entered'] {
