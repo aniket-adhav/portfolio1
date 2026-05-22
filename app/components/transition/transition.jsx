@@ -52,6 +52,11 @@ export const Transition = ({
     } else {
       clearTimeout(enterTimeoutRef.current);
 
+      if (!hasEntered) {
+        setStatus('exited');
+        return;
+      }
+
       const actualTimeout = splitTimeout ? timeout.exit : timeout;
 
       setStatus('exiting');
