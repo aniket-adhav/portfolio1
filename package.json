@@ -7,8 +7,8 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "build": "remix vite:build",
-    "dev": "node ./scripts/dev.cjs && remix vite:dev --port 5000",
+    "build": "npx remix vite:build",
+    "dev": "node ./scripts/dev.cjs && npx remix vite:dev --port 5000",
     "start": "node ./server.js",
     "postinstall": "node ./scripts/draco.cjs",
     "deploy": "npm run build && wrangler pages deploy ./build/client --project-name portfolio",
