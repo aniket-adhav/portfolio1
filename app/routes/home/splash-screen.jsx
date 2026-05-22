@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { useHydrated } from '~/hooks/useHydrated';
 import styles from './splash-screen.module.css';
 
-let greetingStarted = false;
-
 const greetings = [
   'Hello',
   'নমস্কার',
@@ -26,35 +24,15 @@ export function SplashScreen() {
   const [percent, setPercent] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const rafRef = useRef(null);
+  const startedRef = useRef(false);
 
   useEffect(() => {
-    const seen = sessionStorage.getItem('splashShown');
+    if (startedRef.current) return;
+    startedRef.current = true;
 
-    if (!seen && !greetingStarted) {
-      greetingStarted = true;
-      setPhase('greeting');
-      let i = 0;
-      const interval = setInterval(() => {
-        i++;
-        if (i >= greetings.length) {
-          clearInterval(interval);
-          setTimeout(() => {
-            setLeaving(true);
-            setTimeout(() => {
-              sessionStorage.setItem('splashShown', '1');
-              setPhase('done');
-            }, 900);
-          }, 350);
-        } else {
-          setIndex(i);
-        }
-      }, INTERVAL);
-      return () => clearInterval(interval);
-    } else if (!seen && greetingStarted) {
-      setPhase('done');
-    } else {
-      const navType = performance.getEntriesByType?.('navigation')[0]?.type;
-      if (navType !== 'reload') { setPhase('done'); return; }
+    const navType = performance.getEntriesByType?.('navigation')[0]?.type;
+
+    if (navType === 'reload') {
       setPhase('loader');
       const start = performance.now();
       const tick = now => {
@@ -71,10 +49,26 @@ export function SplashScreen() {
       };
       rafRef.current = requestAnimationFrame(tick);
       return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
+    } else {
+      setPhase('greeting');
+      let i = 0;
+      const interval = setInterval(() => {
+        i++;
+        if (i >= greetings.length) {
+          clearInterval(interval);
+          setTimeout(() => {
+            setLeaving(true);
+            setTimeout(() => setPhase('done'), 900);
+          }, 350);
+        } else {
+          setIndex(i);
+        }
+      }, INTERVAL);
+      return () => clearInterval(interval);
     }
   }, []);
 
-  if (!isHydrated || phase === 'done') return null;
+  if (!isHydrated || phase === 'idle' || phase === 'done') return null;
 
   return (
     <div className={styles.splash} data-leaving={leaving}>

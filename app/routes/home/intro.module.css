@@ -147,10 +147,8 @@
   &[data-status='entering'] {
     animation-name: introTextReveal;
 
-    @media (--mediaUseMotion) {
-      &::after {
-        animation-name: reveal;
-      }
+    &::after {
+      animation-name: reveal;
     }
   }
 
