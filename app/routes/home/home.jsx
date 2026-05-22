@@ -69,6 +69,7 @@ export const meta = () => {
 export const Home = () => {
   const [visibleSections, setVisibleSections] = useState([]);
   const [scrollIndicatorHidden, setScrollIndicatorHidden] = useState(false);
+  const [splashDone, setSplashDone] = useState(false);
   const intro = useRef();
   const projectOne = useRef();
   const projectTwo = useRef();
@@ -115,11 +116,12 @@ export const Home = () => {
 
   return (
     <div className={styles.home}>
-      <SplashScreen />
+      <SplashScreen onDone={() => setSplashDone(true)} />
       <Intro
         id="intro"
         sectionRef={intro}
         scrollIndicatorHidden={scrollIndicatorHidden}
+        splashDone={splashDone}
       />
       <ProjectSummary
         id="project-1"

@@ -193,12 +193,60 @@
     }
   }
 
+  /* ── Discipline words: infinite looping strip ── */
+  &[data-plus='true'][data-status='entering'],
+  &[data-plus='true'][data-status='entered'] {
+    &::after {
+      animation-name: revealLoop;
+      animation-duration: 2.8s;
+      animation-timing-function: var(--bezierFastoutSlowin);
+      animation-iteration-count: infinite;
+      animation-fill-mode: both;
+      animation-delay: var(--delay);
+    }
+  }
+
+  &[data-plus='true'][data-status='entering'] {
+    animation-name: introTextReveal;
+  }
+
+  &[data-plus='true'][data-status='entered'] {
+    color: var(--textTitle);
+  }
+
   &[data-status='exiting'] {
     color: var(--textTitle);
     opacity: 0;
     position: absolute;
     top: 0;
     z-index: var(--zIndex0);
+  }
+}
+
+@keyframes revealLoop {
+  0% {
+    transform: scale3d(0, 1, 1);
+    transform-origin: left;
+  }
+
+  22% {
+    transform: scale3d(1, 1, 1);
+    transform-origin: left;
+  }
+
+  23% {
+    transform: scale3d(1, 1, 1);
+    transform-origin: right;
+  }
+
+  45% {
+    transform: scale3d(0, 1, 1);
+    transform-origin: right;
+  }
+
+  100% {
+    transform: scale3d(0, 1, 1);
+    transform-origin: right;
   }
 }
 

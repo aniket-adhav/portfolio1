@@ -17,7 +17,7 @@ const INTERVAL = 280;
 const TOTAL_DURATION = 1800;
 const PANEL_COUNT = 5;
 
-export function SplashScreen() {
+export function SplashScreen({ onDone }) {
   const [phase, setPhase] = useState('idle');
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
@@ -41,7 +41,12 @@ export function SplashScreen() {
           setTimeout(() => {
             if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1200);
+            setTimeout(() => {
+              if (!cancelled) {
+                setPhase('done');
+                onDone?.();
+              }
+            }, 1200);
           }, 200);
         }
       };
@@ -61,7 +66,12 @@ export function SplashScreen() {
           setTimeout(() => {
             if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1200);
+            setTimeout(() => {
+              if (!cancelled) {
+                setPhase('done');
+                onDone?.();
+              }
+            }, 1200);
           }, 500);
         } else {
           setIndex(i);
