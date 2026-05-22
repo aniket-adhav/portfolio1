@@ -60,7 +60,7 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, splashDone, ...re
       tabIndex={-1}
       {...rest}
     >
-      <Transition in key={theme} timeout={3000}>
+      <Transition in={splashDone} key={theme} timeout={3000}>
         {({ visible, status }) => (
           <>
             {isHydrated && (
