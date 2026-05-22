@@ -13,27 +13,28 @@ const greetings = [
   'नमस्ते',
 ];
 
-const DOMAIN = 'aniketadhav.dev';
-const REPEAT = 8;
+const MARQUEE_ITEMS = ['Android Developer', 'Full Stack Developer', 'aniketadhav.dev'];
+const REPEAT = 4;
 
 const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
 
 function MarqueeRow({ reverse }) {
-  const items = Array.from({ length: REPEAT }, (_, i) => i);
+  const slots = Array.from({ length: REPEAT }, (_, i) =>
+    MARQUEE_ITEMS.map((label, j) => ({ label, key: `${i}-${j}` }))
+  ).flat();
   return (
     <div className={styles.marqueeRow} aria-hidden>
       <div className={styles.marqueeTrack} data-reverse={reverse || undefined}>
-        {items.map(i => (
-          <span key={i} className={styles.marqueeItem}>
-            {DOMAIN}
+        {slots.map(({ label, key }) => (
+          <span key={key} className={styles.marqueeItem}>
+            {label}
             <span className={styles.marqueeDot}>·</span>
           </span>
         ))}
-        {/* duplicate for seamless loop */}
-        {items.map(i => (
-          <span key={`b${i}`} className={styles.marqueeItem}>
-            {DOMAIN}
+        {slots.map(({ label, key }) => (
+          <span key={`b${key}`} className={styles.marqueeItem}>
+            {label}
             <span className={styles.marqueeDot}>·</span>
           </span>
         ))}

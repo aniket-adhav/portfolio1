@@ -227,6 +227,12 @@
       width: 80%;
       bottom: 2%;
     }
+
+    @media (--mediaMobile) {
+      width: 100%;
+      bottom: 2%;
+      opacity: 1;
+    }
   }
 }
 
@@ -267,6 +273,7 @@
   transition-duration: var(--durationXL);
   transition-delay: var(--durationM);
   opacity: 0;
+  color: var(--textTitle);
 
   @media (--mediaUseMotion) {
     transition-property: transform, opacity;
@@ -276,6 +283,12 @@
   &[data-visible='true'] {
     transform: none;
     opacity: 1;
+  }
+
+  @media (--mediaMobile) {
+    opacity: 1;
+    transform: none;
+    color: var(--textTitle);
   }
 }
 

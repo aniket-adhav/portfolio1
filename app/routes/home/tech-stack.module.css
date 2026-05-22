@@ -140,6 +140,14 @@
     animation: pop-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     animation-delay: var(--delay, 0ms);
   }
+
+  @media (--mediaMobile) {
+    gap: 6px;
+    /* On mobile flatten every row so items fill a uniform grid */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 .row {
@@ -147,6 +155,10 @@
   justify-content: center;
   gap: 8px;
   flex-wrap: wrap;
+
+  @media (--mediaMobile) {
+    gap: 6px;
+  }
 }
 
 /* ═══════════════════════════════════════════════════════════
