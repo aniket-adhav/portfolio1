@@ -1,11 +1,13 @@
 import { AnimatePresence, usePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useHydrated } from '~/hooks/useHydrated';
 
 /**
  * A lightweight Framer Motion `AnimatePresence` implementation of
  * `react-transition-group` to be used for simple vanilla css transitions
  */
 export const Transition = ({ children, in: show, unmount, initial = true, ...props }) => {
+  const isHydrated = useHydrated();
   const enterTimeout = useRef();
   const exitTimeout = useRef();
 
@@ -17,21 +19,23 @@ export const Transition = ({ children, in: show, unmount, initial = true, ...pro
     }
   }, [show]);
 
-  return (
-    <AnimatePresence initial={false}>
-      {(show || !unmount) && (
-        <TransitionContent
-          enterTimeout={enterTimeout}
-          exitTimeout={exitTimeout}
-          in={show}
-          initial={initial}
-          {...props}
-        >
-          {children}
-        </TransitionContent>
-      )}
-    </AnimatePresence>
+  const content = (show || !unmount) && (
+    <TransitionContent
+      enterTimeout={enterTimeout}
+      exitTimeout={exitTimeout}
+      in={show}
+      initial={initial}
+      {...props}
+    >
+      {children}
+    </TransitionContent>
   );
+
+  if (!isHydrated) {
+    return content;
+  }
+
+  return <AnimatePresence initial={false}>{content}</AnimatePresence>;
 };
 
 const TransitionContent = ({
