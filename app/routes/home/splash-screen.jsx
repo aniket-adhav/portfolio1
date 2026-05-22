@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { useHydrated } from '~/hooks/useHydrated';
-import config from '~/config.json';
 import styles from './splash-screen.module.css';
 
 const greetings = [
@@ -20,7 +18,6 @@ const TOTAL_DURATION = 1800;
 const PANEL_COUNT = 5;
 
 export function SplashScreen() {
-  const isHydrated = useHydrated();
   const [phase, setPhase] = useState('idle');
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
@@ -29,7 +26,6 @@ export function SplashScreen() {
 
   useEffect(() => {
     let cancelled = false;
-
     const navType = performance.getEntriesByType?.('navigation')[0]?.type;
 
     if (navType === 'reload') {
@@ -50,6 +46,10 @@ export function SplashScreen() {
         }
       };
       rafRef.current = requestAnimationFrame(tick);
+      return () => {
+        cancelled = true;
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      };
     } else {
       setPhase('greeting');
       let i = 0;
@@ -72,27 +72,12 @@ export function SplashScreen() {
         clearInterval(interval);
       };
     }
-
-    return () => {
-      cancelled = true;
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
   }, []);
 
-  if (!isHydrated || phase === 'idle' || phase === 'done') return null;
-
-  const progress =
-    phase === 'greeting'
-      ? (index + 1) / greetings.length
-      : percent / 100;
-
-  const indexLabel =
-    phase === 'greeting'
-      ? `${String(index + 1).padStart(2, '0')} — ${String(greetings.length).padStart(2, '0')}`
-      : `${percent} %`;
+  if (phase === 'done') return null;
 
   return (
-    <div className={styles.splash} aria-hidden="true">
+    <div className={styles.splash} suppressHydrationWarning>
       {Array.from({ length: PANEL_COUNT }).map((_, i) => (
         <div
           key={i}
@@ -102,34 +87,21 @@ export function SplashScreen() {
         />
       ))}
 
-      <div className={styles.center} data-leaving={leaving}>
-        {phase === 'greeting' && (
+      {phase === 'greeting' && (
+        <div className={styles.center} data-leaving={leaving}>
           <div className={styles.clip} key={index}>
             <span className={styles.word}>{greetings[index]}</span>
           </div>
-        )}
-        {phase === 'loader' && (
+        </div>
+      )}
+
+      {phase === 'loader' && (
+        <div className={styles.center} data-leaving={leaving}>
           <div className={styles.clip} key="pct">
-            <span className={styles.word}>
-              {percent}
-              <span className={styles.pctSign}>%</span>
-            </span>
+            <span className={styles.pct}>{percent}%</span>
           </div>
-        )}
-      </div>
-
-      <div className={styles.footer} data-leaving={leaving}>
-        <span className={styles.footerName}>{config.name}</span>
-        <span className={styles.footerIndex}>{indexLabel}</span>
-      </div>
-
-      <div className={styles.bar}>
-        <div
-          className={styles.barFill}
-          style={{ transform: `scaleX(${progress})` }}
-          data-leaving={leaving}
-        />
-      </div>
+        </div>
+      )}
     </div>
   );
 }

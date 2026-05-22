@@ -3,7 +3,8 @@
   inset: 0;
   z-index: 9999;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
 }
 
@@ -27,12 +28,10 @@
 .center {
   position: relative;
   z-index: 2;
-  flex: 1;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 0 clamp(24px, 6vw, 80px);
-  transition: opacity 0.25s ease;
+  justify-content: center;
+  transition: opacity 0.2s ease;
 }
 
 .center[data-leaving='true'] {
@@ -46,83 +45,29 @@
 
 .word {
   display: block;
-  font-size: clamp(3.5rem, 12vw, 9rem);
+  font-size: clamp(3rem, 10vw, 7rem);
   font-weight: var(--fontWeightMedium);
   color: var(--textTitle);
   letter-spacing: -0.03em;
-  line-height: 0.95;
-  animation: clipReveal 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  line-height: 1;
+  animation: clipReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   white-space: nowrap;
 }
 
-.pctSign {
-  font-size: 0.45em;
-  color: var(--accent);
-  margin-left: 0.1em;
-  letter-spacing: -0.02em;
-  vertical-align: baseline;
-  position: relative;
-  top: -0.1em;
-}
-
-.footer {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  padding: clamp(20px, 3vw, 40px) clamp(24px, 6vw, 80px);
-  padding-bottom: clamp(24px, 3.5vw, 48px);
-  transition: opacity 0.25s ease;
-}
-
-.footer[data-leaving='true'] {
-  opacity: 0;
-}
-
-.footerName {
-  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
-  font-weight: var(--fontWeightMedium);
-  color: color-mix(in lab, var(--text) 55%, transparent);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
-.footerIndex {
-  font-size: clamp(0.75rem, 1.4vw, 0.9rem);
-  font-weight: var(--fontWeightMedium);
-  color: var(--accent);
-  letter-spacing: 0.08em;
+.pct {
+  display: block;
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: var(--fontWeightRegular);
+  color: color-mix(in lab, var(--text) 60%, transparent);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  animation: clipReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   font-variant-numeric: tabular-nums;
-}
-
-.bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  z-index: 3;
-  background: color-mix(in lab, var(--text) 10%, transparent);
-}
-
-.barFill {
-  height: 100%;
-  width: 100%;
-  background: var(--accent);
-  transform-origin: left;
-  transform: scaleX(0);
-  transition: transform 0.22s linear;
-}
-
-.barFill[data-leaving='true'] {
-  transition: transform 0.5s cubic-bezier(0.87, 0, 0.13, 1);
-  transform: scaleX(1);
 }
 
 @keyframes clipReveal {
   from {
-    transform: translateY(105%);
+    transform: translateY(110%);
   }
   to {
     transform: translateY(0);
