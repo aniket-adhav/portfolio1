@@ -8,68 +8,98 @@
   pointer-events: none;
 }
 
+/* Panels always use a fixed dark color, never the theme color */
 .panel {
   position: absolute;
   top: 0;
   bottom: 0;
-  width: calc(100% / 5);
+  width: calc(100% / 5 + 1px);
   left: calc(var(--i) * 20%);
-  background: var(--background);
+  background: oklch(12% 0 0);
   transform: translateY(0);
-  transition: transform 0.85s cubic-bezier(0.87, 0, 0.13, 1);
-  transition-delay: calc(var(--i) * 0.07s);
+  transition: transform 1s cubic-bezier(0.87, 0, 0.13, 1);
+  transition-delay: calc(var(--i) * 0.08s);
   will-change: transform;
 }
 
 .panel[data-leaving='true'] {
-  transform: translateY(-100%);
+  transform: translateY(-105%);
 }
 
+/* ── Center container ── */
 .center {
   position: relative;
   z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.2s ease;
 }
 
-.center[data-leaving='true'] {
-  opacity: 0;
-}
-
+/* ── Clip mask so words reveal/hide cleanly ── */
 .clip {
   overflow: hidden;
-  line-height: 1;
+  line-height: 1.1;
+  padding-bottom: 0.08em;
 }
 
+/* ── Greeting word – entry animation ── */
 .word {
   display: block;
-  font-size: clamp(3rem, 10vw, 7rem);
-  font-weight: var(--fontWeightMedium);
-  color: var(--textTitle);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  animation: clipReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+  font-weight: var(--fontWeightRegular);
+  color: oklch(96% 0 0);
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  animation: wordIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
   white-space: nowrap;
 }
 
+/* Latin script gets a touch more spacing */
+.word:lang(en) {
+  letter-spacing: 0.08em;
+  font-weight: var(--fontWeightMedium);
+}
+
+/* Word exit – slides back down into clip */
+.center[data-leaving='true'] .word {
+  animation: wordOut 0.4s cubic-bezier(0.87, 0, 0.13, 1) both;
+}
+
+/* ── Percentage (reload) ── */
 .pct {
   display: block;
-  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-size: clamp(0.9rem, 2vw, 1.3rem);
   font-weight: var(--fontWeightRegular);
-  color: color-mix(in lab, var(--text) 60%, transparent);
-  letter-spacing: 0.04em;
+  color: oklch(60% 0 0);
+  letter-spacing: 0.12em;
   line-height: 1;
-  animation: clipReveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: wordIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
   font-variant-numeric: tabular-nums;
 }
 
-@keyframes clipReveal {
+.center[data-leaving='true'] .pct {
+  animation: wordOut 0.4s cubic-bezier(0.87, 0, 0.13, 1) both;
+}
+
+/* ── Keyframes ── */
+@keyframes wordIn {
   from {
     transform: translateY(110%);
+    opacity: 0.6;
   }
   to {
     transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes wordOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110%);
+    opacity: 0;
   }
 }

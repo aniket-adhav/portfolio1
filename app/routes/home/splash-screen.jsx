@@ -2,18 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import styles from './splash-screen.module.css';
 
 const greetings = [
-  'Hello',
-  'নমস্কার',
-  'வணக்கம்',
-  'నమస్కారం',
-  'ನಮಸ್ಕಾರ',
-  'નમસ્તે',
-  'ਸਤ ਸ੍ਰੀ ਅਕਾਲ',
-  'नमस्कार',
-  'नमस्ते',
+  { text: 'Hello', lang: 'en' },
+  { text: 'नमस्कार', lang: 'mr' },
+  { text: 'নমস্কার', lang: 'bn' },
+  { text: 'வணக்கம்', lang: 'ta' },
+  { text: 'నమస్కారం', lang: 'te' },
+  { text: 'ನಮಸ್ಕಾರ', lang: 'kn' },
+  { text: 'નમસ્તે', lang: 'gu' },
+  { text: 'ਸਤ ਸ੍ਰੀ ਅਕਾਲ', lang: 'pa' },
+  { text: 'नमस्ते', lang: 'hi' },
 ];
 
-const INTERVAL = 240;
+const INTERVAL = 280;
 const TOTAL_DURATION = 1800;
 const PANEL_COUNT = 5;
 
@@ -41,7 +41,7 @@ export function SplashScreen() {
           setTimeout(() => {
             if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1100);
+            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1200);
           }, 200);
         }
       };
@@ -61,8 +61,8 @@ export function SplashScreen() {
           setTimeout(() => {
             if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1100);
-          }, 400);
+            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1200);
+          }, 500);
         } else {
           setIndex(i);
         }
@@ -75,6 +75,8 @@ export function SplashScreen() {
   }, []);
 
   if (phase === 'done') return null;
+
+  const current = greetings[index];
 
   return (
     <div className={styles.splash} suppressHydrationWarning>
@@ -90,7 +92,7 @@ export function SplashScreen() {
       {phase === 'greeting' && (
         <div className={styles.center} data-leaving={leaving}>
           <div className={styles.clip} key={index}>
-            <span className={styles.word}>{greetings[index]}</span>
+            <span className={styles.word} lang={current.lang}>{current.text}</span>
           </div>
         </div>
       )}
