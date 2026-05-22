@@ -1,107 +1,81 @@
-import { AnimatePresence, usePresence } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
-import { useHydrated } from '~/hooks/useHydrated';
 
 /**
- * A lightweight Framer Motion `AnimatePresence` implementation of
- * `react-transition-group` to be used for simple vanilla css transitions
+ * Pure React replacement for the Framer Motion AnimatePresence-based Transition.
+ * Identical interface and behaviour — no framer-motion dependency, no SSR mismatch.
  */
-export const Transition = ({ children, in: show, unmount, initial = true, ...props }) => {
-  const isHydrated = useHydrated();
-  const enterTimeout = useRef();
-  const exitTimeout = useRef();
-
-  useEffect(() => {
-    if (show) {
-      clearTimeout(exitTimeout.current);
-    } else {
-      clearTimeout(enterTimeout.current);
-    }
-  }, [show]);
-
-  const content = (show || !unmount) && (
-    <TransitionContent
-      enterTimeout={enterTimeout}
-      exitTimeout={exitTimeout}
-      in={show}
-      initial={initial}
-      {...props}
-    >
-      {children}
-    </TransitionContent>
-  );
-
-  if (!isHydrated) {
-    return content;
-  }
-
-  return <AnimatePresence initial={false}>{content}</AnimatePresence>;
-};
-
-const TransitionContent = ({
+export const Transition = ({
   children,
+  in: show,
+  unmount,
+  initial = true,
   timeout = 0,
-  enterTimeout,
-  exitTimeout,
   onEnter,
   onEntered,
   onExit,
   onExited,
-  initial,
-  nodeRef: defaultNodeRef,
-  in: show,
+  nodeRef: externalNodeRef,
 }) => {
-  const [status, setStatus] = useState(initial ? 'exited' : 'entered');
-  const [isPresent, safeToRemove] = usePresence();
-  const [hasEntered, setHasEntered] = useState(initial ? false : true);
-  const splitTimeout = typeof timeout === 'object';
+  const enterTimeoutRef = useRef();
+  const exitTimeoutRef = useRef();
   const internalNodeRef = useRef(null);
-  const nodeRef = defaultNodeRef || internalNodeRef;
-  const visible = hasEntered && show ? isPresent : false;
+  const nodeRef = externalNodeRef || internalNodeRef;
+  const splitTimeout = typeof timeout === 'object';
+
+  const [isMounted, setIsMounted] = useState(show || !unmount);
+  const [status, setStatus] = useState(initial ? 'exited' : 'entered');
+  const [hasEntered, setHasEntered] = useState(!initial);
+
+  const visible = hasEntered && show;
 
   useEffect(() => {
-    if (hasEntered || !show) return;
+    if (show) {
+      clearTimeout(exitTimeoutRef.current);
+      setIsMounted(true);
 
-    const actualTimeout = splitTimeout ? timeout.enter : timeout;
+      if (!hasEntered) {
+        const actualTimeout = splitTimeout ? timeout.enter : timeout;
 
-    clearTimeout(enterTimeout.current);
-    clearTimeout(exitTimeout.current);
+        clearTimeout(enterTimeoutRef.current);
 
-    setHasEntered(true);
-    setStatus('entering');
-    onEnter?.();
+        setHasEntered(true);
+        setStatus('entering');
+        onEnter?.();
 
-    // Force reflow
-    nodeRef.current?.offsetHeight;
+        nodeRef.current?.offsetHeight;
 
-    enterTimeout.current = setTimeout(() => {
-      setStatus('entered');
-      onEntered?.();
-    }, actualTimeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [onEnter, onEntered, timeout, status, show]);
+        enterTimeoutRef.current = setTimeout(() => {
+          setStatus('entered');
+          onEntered?.();
+        }, actualTimeout);
+      }
+    } else {
+      clearTimeout(enterTimeoutRef.current);
+
+      const actualTimeout = splitTimeout ? timeout.exit : timeout;
+
+      setStatus('exiting');
+      onExit?.();
+
+      nodeRef.current?.offsetHeight;
+
+      exitTimeoutRef.current = setTimeout(() => {
+        setStatus('exited');
+        onExited?.();
+        if (unmount) setIsMounted(false);
+      }, actualTimeout);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [show]);
 
   useEffect(() => {
-    if (isPresent && show) return;
+    return () => {
+      clearTimeout(enterTimeoutRef.current);
+      clearTimeout(exitTimeoutRef.current);
+    };
+  }, []);
 
-    const actualTimeout = splitTimeout ? timeout.exit : timeout;
-
-    clearTimeout(enterTimeout.current);
-    clearTimeout(exitTimeout.current);
-
-    setStatus('exiting');
-    onExit?.();
-
-    // Force reflow
-    nodeRef.current?.offsetHeight;
-
-    exitTimeout.current = setTimeout(() => {
-      setStatus('exited');
-      safeToRemove?.();
-      onExited?.();
-    }, actualTimeout);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isPresent, onExit, safeToRemove, timeout, onExited, show]);
+  if (!isMounted) return null;
 
   return children({ visible, status, nodeRef });
 };

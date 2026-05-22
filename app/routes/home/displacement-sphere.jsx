@@ -1,6 +1,7 @@
 import { useTheme } from '~/components/theme-provider';
 import { Transition } from '~/components/transition';
-import { useReducedMotion, useSpring } from 'framer-motion';
+import { useSpring } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { useInViewport, useWindowSize } from '~/hooks';
 import { startTransition, useEffect, useRef, useState } from 'react';
 import {

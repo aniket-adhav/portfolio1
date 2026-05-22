@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import styles from './splash-screen.module.css';
 
+let greetingStarted = false;
+
 const greetings = [
   'Hello',
   'নমস্কার',
@@ -26,7 +28,8 @@ export function SplashScreen() {
   useEffect(() => {
     const seen = sessionStorage.getItem('splashShown');
 
-    if (!seen) {
+    if (!seen && !greetingStarted) {
+      greetingStarted = true;
       setPhase('greeting');
       let i = 0;
       const interval = setInterval(() => {
@@ -45,6 +48,8 @@ export function SplashScreen() {
         }
       }, INTERVAL);
       return () => clearInterval(interval);
+    } else if (!seen && greetingStarted) {
+      setPhase('done');
     } else {
       const navType = performance.getEntriesByType?.('navigation')[0]?.type;
       if (navType !== 'reload') { setPhase('done'); return; }

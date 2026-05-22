@@ -1,4 +1,4 @@
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { useEffect } from 'react';
 
 export function useParallax(multiplier, onChange) {

@@ -1,5 +1,6 @@
 import { VisuallyHidden } from '~/components/visually-hidden';
-import { useReducedMotion, useSpring } from 'framer-motion';
+import { useSpring } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { memo, useEffect, useRef } from 'react';
 import { delay } from '~/utils/delay';
 import { classes } from '~/utils/style';

@@ -1,4 +1,5 @@
-import { animate, useReducedMotion } from 'framer-motion';
+import { animate } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { useInViewport } from '~/hooks';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {

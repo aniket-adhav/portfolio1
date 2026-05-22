@@ -1,5 +1,5 @@
 import { Text } from '~/components/text';
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { classes, cssProps } from '~/utils/style';
 import { forwardRef } from 'react';
 import styles from './loader.module.css';

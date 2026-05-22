@@ -1,7 +1,7 @@
 import { Button } from '~/components/button';
 import { Icon } from '~/components/icon';
 import { useTheme } from '~/components/theme-provider';
-import { useReducedMotion } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { useHasMounted, useInViewport } from '~/hooks';
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { resolveSrcFromSrcSet } from '~/utils/image';

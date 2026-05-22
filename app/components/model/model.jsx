@@ -1,4 +1,5 @@
-import { animate, useReducedMotion, useSpring } from 'framer-motion';
+import { animate, useSpring } from 'framer-motion';
+import { useReducedMotion } from '~/hooks/useReducedMotion';
 import { useInViewport } from '~/hooks';
 import {
   createRef,
