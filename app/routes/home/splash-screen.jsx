@@ -26,11 +26,9 @@ export function SplashScreen() {
   const [percent, setPercent] = useState(0);
   const [leaving, setLeaving] = useState(false);
   const rafRef = useRef(null);
-  const startedRef = useRef(false);
 
   useEffect(() => {
-    if (startedRef.current) return;
-    startedRef.current = true;
+    let cancelled = false;
 
     const navType = performance.getEntriesByType?.('navigation')[0]?.type;
 
@@ -38,36 +36,47 @@ export function SplashScreen() {
       setPhase('loader');
       const start = performance.now();
       const tick = now => {
+        if (cancelled) return;
         const pct = Math.min(100, Math.round(((now - start) / TOTAL_DURATION) * 100));
         setPercent(pct);
         if (pct < 100) {
           rafRef.current = requestAnimationFrame(tick);
         } else {
           setTimeout(() => {
+            if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => setPhase('done'), 1100);
+            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1100);
           }, 200);
         }
       };
       rafRef.current = requestAnimationFrame(tick);
-      return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
     } else {
       setPhase('greeting');
       let i = 0;
       const interval = setInterval(() => {
+        if (cancelled) return;
         i++;
         if (i >= greetings.length) {
           clearInterval(interval);
           setTimeout(() => {
+            if (cancelled) return;
             setLeaving(true);
-            setTimeout(() => setPhase('done'), 1100);
+            setTimeout(() => { if (!cancelled) setPhase('done'); }, 1100);
           }, 400);
         } else {
           setIndex(i);
         }
       }, INTERVAL);
-      return () => clearInterval(interval);
+      return () => {
+        cancelled = true;
+        clearInterval(interval);
+      };
     }
+
+    return () => {
+      cancelled = true;
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
   if (!isHydrated || phase === 'idle' || phase === 'done') return null;
