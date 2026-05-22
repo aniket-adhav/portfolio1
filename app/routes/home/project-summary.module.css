@@ -23,8 +23,13 @@
   }
 
   @media (--mediaMobile) {
-    padding-bottom: var(--space4XL);
-    margin-bottom: 0;
+    height: auto;
+    margin: var(--spaceXL) 0;
+    padding-bottom: var(--spaceXL);
+
+    &[data-alternate='true'] {
+      margin-bottom: var(--spaceXL);
+    }
   }
 
   &[data-first='true'] {
@@ -95,6 +100,12 @@
   justify-content: center;
   height: 100%;
   width: 100%;
+
+  @media (--mediaMobile) {
+    height: auto;
+    max-height: 50vh;
+    overflow: visible;
+  }
 }
 
 .model {
@@ -166,10 +177,10 @@
     }
 
     @media (--mediaMobile) {
-      --width: 108%;
+      --width: 100%;
 
       left: 0;
-      max-height: none;
+      max-height: 44vh;
     }
   }
 }
