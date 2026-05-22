@@ -27,7 +27,7 @@
 
 .word {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
   font-weight: var(--fontWeightMedium, 500);
   color: var(--text, #111111);
   letter-spacing: 0.06em;
@@ -49,7 +49,7 @@
 
 .loaderPercent {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
   font-weight: var(--fontWeightMedium, 500);
   color: var(--text, #111111);
   letter-spacing: 0.04em;
