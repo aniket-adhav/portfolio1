@@ -18,7 +18,7 @@ export const Transition = ({ children, in: show, unmount, initial = true, ...pro
   }, [show]);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence initial={false}>
       {(show || !unmount) && (
         <TransitionContent
           enterTimeout={enterTimeout}
