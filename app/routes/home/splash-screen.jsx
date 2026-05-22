@@ -13,25 +13,28 @@ const greetings = [
   'नमस्ते',
 ];
 
-const MARQUEE_ITEMS = [
-  'AI Engineer',
-  'Full Stack Developer',
-  'Android Developer',
-  'Problem Solver',
-];
+const DOMAIN = 'aniketadhav.dev';
+const REPEAT = 8;
 
 const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
 
-function MarqueeTrack({ reverse }) {
-  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+function MarqueeRow({ reverse }) {
+  const items = Array.from({ length: REPEAT }, (_, i) => i);
   return (
-    <div className={styles.marqueeOuter} data-reverse={reverse || undefined}>
-      <div className={styles.marqueeTrack}>
-        {items.map((item, i) => (
+    <div className={styles.marqueeRow} aria-hidden>
+      <div className={styles.marqueeTrack} data-reverse={reverse || undefined}>
+        {items.map(i => (
           <span key={i} className={styles.marqueeItem}>
-            {item}
-            <span className={styles.marqueeDot} aria-hidden>·</span>
+            {DOMAIN}
+            <span className={styles.marqueeDot}>·</span>
+          </span>
+        ))}
+        {/* duplicate for seamless loop */}
+        {items.map(i => (
+          <span key={`b${i}`} className={styles.marqueeItem}>
+            {DOMAIN}
+            <span className={styles.marqueeDot}>·</span>
           </span>
         ))}
       </div>
@@ -95,13 +98,14 @@ export function SplashScreen() {
   return (
     <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
 
-      {/* ── Top marquee ── */}
-      <div className={styles.marqueeTop}>
-        <MarqueeTrack />
+      {/* ── Top marquee rows ── */}
+      <div className={styles.marqueeGroup} data-pos="top">
+        <MarqueeRow />
+        <MarqueeRow reverse />
       </div>
 
-      {/* ── Centre: greeting or percentage ── */}
-      <div className={styles.centre}>
+      {/* ── Centre greeting / percentage ── */}
+      <div className={styles.centre} suppressHydrationWarning>
         {phase === 'greeting' && (
           <span className={styles.word} key={index}>
             {greetings[index]}
@@ -115,12 +119,13 @@ export function SplashScreen() {
         )}
       </div>
 
-      {/* ── Bottom marquee (reversed) ── */}
-      <div className={styles.marqueeBottom}>
-        <MarqueeTrack reverse />
+      {/* ── Bottom marquee rows ── */}
+      <div className={styles.marqueeGroup} data-pos="bottom">
+        <MarqueeRow reverse />
+        <MarqueeRow />
       </div>
 
-      {/* ── Progress bar (greeting only) ── */}
+      {/* ── Progress bar (greeting phase only) ── */}
       {phase === 'greeting' && (
         <div className={styles.bar}>
           <div
