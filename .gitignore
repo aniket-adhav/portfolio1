@@ -6,6 +6,7 @@ node_modules
 
 .wrangler
 .dev.vars
+.vercel
 
 public/draco
 storybook-static
