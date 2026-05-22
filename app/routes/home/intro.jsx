@@ -60,15 +60,17 @@ export function Intro({ id, sectionRef, scrollIndicatorHidden, splashDone, ...re
       tabIndex={-1}
       {...rest}
     >
-      <Transition in={splashDone} key={theme} timeout={3000}>
+      <Transition in key={theme} timeout={3000}>
         {({ visible, status }) => (
           <>
-            <Suspense>
-              {isHydrated && <DisplacementSphere />}
-            </Suspense>
+            {isHydrated && (
+              <Suspense>
+                <DisplacementSphere />
+              </Suspense>
+            )}
             <header className={styles.text}>
               <h1 className={styles.name} data-visible={visible} id={titleId}>
-                <DecoderText text={config.name} start={visible} delay={500} />
+                <DecoderText text={config.name} delay={500} />
               </h1>
               <Heading level={0} as="h2" className={styles.title}>
                 <VisuallyHidden className={styles.label}>
