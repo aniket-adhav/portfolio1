@@ -13,8 +13,31 @@ const greetings = [
   'नमस्ते',
 ];
 
+const MARQUEE_ITEMS = [
+  'AI Engineer',
+  'Full Stack Developer',
+  'Android Developer',
+  'Problem Solver',
+];
+
 const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
+
+function MarqueeTrack({ reverse }) {
+  const items = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+  return (
+    <div className={styles.marqueeOuter} data-reverse={reverse || undefined}>
+      <div className={styles.marqueeTrack}>
+        {items.map((item, i) => (
+          <span key={i} className={styles.marqueeItem}>
+            {item}
+            <span className={styles.marqueeDot} aria-hidden>·</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 export function SplashScreen() {
   const [phase, setPhase] = useState('idle');
@@ -28,7 +51,6 @@ export function SplashScreen() {
 
     if (!seen) {
       setPhase('greeting');
-
       let i = 0;
       const interval = setInterval(() => {
         i++;
@@ -45,14 +67,12 @@ export function SplashScreen() {
           setIndex(i);
         }
       }, INTERVAL);
-
       return () => clearInterval(interval);
     } else {
       const navType = performance.getEntriesByType?.('navigation')[0]?.type;
       if (navType !== 'reload') { setPhase('done'); return; }
       setPhase('loader');
       const start = performance.now();
-
       const tick = now => {
         const pct = Math.min(100, Math.round(((now - start) / TOTAL_DURATION) * 100));
         setPercent(pct);
@@ -66,10 +86,7 @@ export function SplashScreen() {
         }
       };
       rafRef.current = requestAnimationFrame(tick);
-
-      return () => {
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      };
+      return () => { if (rafRef.current) cancelAnimationFrame(rafRef.current); };
     }
   }, []);
 
@@ -78,30 +95,32 @@ export function SplashScreen() {
   return (
     <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
 
-      {/* ── Background title text ── */}
-      <div className={styles.bgText} aria-hidden>
-        <span className={styles.bgLine}>FULL STACK</span>
-        <span className={styles.bgLine}>WEB &amp; ANDROID</span>
-        <span className={styles.bgLine}>DEVELOPER</span>
+      {/* ── Top marquee ── */}
+      <div className={styles.marqueeTop}>
+        <MarqueeTrack />
       </div>
 
-      {/* ── Center content ── */}
-      {phase === 'greeting' && (
-        <div className={styles.inner}>
+      {/* ── Centre: greeting or percentage ── */}
+      <div className={styles.centre}>
+        {phase === 'greeting' && (
           <span className={styles.word} key={index}>
             {greetings[index]}
           </span>
-        </div>
-      )}
+        )}
+        {phase === 'loader' && (
+          <div className={styles.loaderWrap}>
+            <span className={styles.loaderPercent}>{percent}</span>
+            <span className={styles.loaderSign}>%</span>
+          </div>
+        )}
+      </div>
 
-      {phase === 'loader' && (
-        <div className={styles.loaderWrap}>
-          <span className={styles.loaderPercent}>{percent}</span>
-          <span className={styles.loaderSign}>%</span>
-        </div>
-      )}
+      {/* ── Bottom marquee (reversed) ── */}
+      <div className={styles.marqueeBottom}>
+        <MarqueeTrack reverse />
+      </div>
 
-      {/* ── Bottom progress bar (greeting only) ── */}
+      {/* ── Progress bar (greeting only) ── */}
       {phase === 'greeting' && (
         <div className={styles.bar}>
           <div
