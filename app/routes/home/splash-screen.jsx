@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useHydrated } from '~/hooks/useHydrated';
 import styles from './splash-screen.module.css';
 
 let greetingStarted = false;
@@ -19,6 +20,7 @@ const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
 
 export function SplashScreen() {
+  const isHydrated = useHydrated();
   const [phase, setPhase] = useState('idle');
   const [index, setIndex] = useState(0);
   const [percent, setPercent] = useState(0);
@@ -72,11 +74,11 @@ export function SplashScreen() {
     }
   }, []);
 
-  if (phase === 'done') return null;
+  if (!isHydrated || phase === 'done') return null;
 
   return (
-    <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
-      <div className={styles.inner} suppressHydrationWarning>
+    <div className={styles.splash} data-leaving={leaving}>
+      <div className={styles.inner}>
         {phase === 'greeting' && (
           <span className={styles.word} key={index}>
             {greetings[index]}

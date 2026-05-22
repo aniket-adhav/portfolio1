@@ -2,8 +2,9 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--background, #f2f2f2);
+  background: var(--background, #111);
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   transform: translateY(0%);
@@ -19,6 +20,7 @@
   position: relative;
   z-index: 2;
   display: flex;
+  flex: 1;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -27,15 +29,14 @@
 
 .word {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-size: clamp(2.8rem, 8vw, 6rem);
   font-weight: var(--fontWeightMedium, 500);
-  color: var(--text, #111111);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  color: var(--textTitle, #fff);
+  letter-spacing: -0.02em;
   line-height: 1;
   text-align: center;
   display: block;
-  animation: wordIn 0.15s ease forwards;
+  animation: wordIn 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .loaderWrap {
@@ -43,16 +44,16 @@
   z-index: 2;
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 6px;
   line-height: 1;
 }
 
 .loaderPercent {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+  font-size: clamp(5rem, 18vw, 12rem);
   font-weight: var(--fontWeightMedium, 500);
-  color: var(--text, #111111);
-  letter-spacing: 0.04em;
+  color: var(--textTitle, #fff);
+  letter-spacing: -0.04em;
   line-height: 1;
   font-variant-numeric: tabular-nums;
   min-width: 3ch;
@@ -62,34 +63,35 @@
 
 .loaderSign {
   font-family: var(--fontStack, 'Gotham', 'Arial', sans-serif);
-  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: var(--fontWeightMedium, 500);
-  color: color-mix(in lab, var(--text, #111) 45%, transparent);
+  color: var(--accent, #00e5ff);
+  letter-spacing: -0.02em;
   line-height: 1;
-  align-self: flex-end;
-  margin-bottom: 0.2em;
+  align-self: flex-start;
+  margin-top: 0.25em;
 }
 
 .bar {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 2px;
+  height: 3px;
   width: 100%;
-  background: color-mix(in lab, var(--text, #111) 10%, transparent);
+  background: color-mix(in lab, var(--text, #fff) 12%, transparent);
   z-index: 2;
 }
 
 .barFill {
   height: 100%;
-  background: var(--text, #111111);
+  background: var(--accent, #00e5ff);
   transition: width 0.18s linear;
 }
 
 @keyframes wordIn {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;

@@ -150,7 +150,6 @@
     @media (--mediaUseMotion) {
       &::after {
         animation-name: reveal;
-        animation-iteration-count: infinite;
       }
     }
   }
@@ -159,11 +158,9 @@
     color: var(--textTitle);
 
     &::after {
-      animation-name: reveal;
-      animation-duration: 1.5s;
-      animation-timing-function: var(--bezierFastoutSlowin);
-      animation-iteration-count: infinite;
-      animation-fill-mode: none;
+      opacity: 1;
+      transform: scale3d(0, 0, 1);
+      transform-origin: right;
     }
   }
 
