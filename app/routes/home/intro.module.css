@@ -73,6 +73,10 @@
 
 .title {
   letter-spacing: -0.03em;
+
+  @media (--mediaMobile) {
+    --fontSizeH0: clamp(1.5rem, 7vw, 2.2rem);
+  }
 }
 
 .row {
@@ -188,6 +192,12 @@
   width: 120%;
   display: flex;
   margin-left: 20px;
+
+  @media (--mediaMobile) {
+    width: auto;
+    flex: 1;
+    min-width: 0;
+  }
   animation-duration: 0.8s;
   animation-delay: 1s;
   animation-fill-mode: forwards;
