@@ -13,35 +13,8 @@ const greetings = [
   'नमस्ते',
 ];
 
-const MARQUEE_ITEMS = ['Android Developer', 'Full Stack Developer', 'aniketadhav.dev'];
-const REPEAT = 4;
-
 const INTERVAL = 220;
 const TOTAL_DURATION = 1500;
-
-function MarqueeRow({ reverse }) {
-  const slots = Array.from({ length: REPEAT }, (_, i) =>
-    MARQUEE_ITEMS.map((label, j) => ({ label, key: `${i}-${j}` }))
-  ).flat();
-  return (
-    <div className={styles.marqueeRow} aria-hidden>
-      <div className={styles.marqueeTrack} data-reverse={reverse || undefined}>
-        {slots.map(({ label, key }) => (
-          <span key={key} className={styles.marqueeItem}>
-            {label}
-            <span className={styles.marqueeDot}>·</span>
-          </span>
-        ))}
-        {slots.map(({ label, key }) => (
-          <span key={`b${key}`} className={styles.marqueeItem}>
-            {label}
-            <span className={styles.marqueeDot}>·</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export function SplashScreen() {
   const [phase, setPhase] = useState('idle');
@@ -98,15 +71,7 @@ export function SplashScreen() {
 
   return (
     <div className={styles.splash} data-leaving={leaving} suppressHydrationWarning>
-
-      {/* ── Top marquee rows ── */}
-      <div className={styles.marqueeGroup} data-pos="top">
-        <MarqueeRow />
-        <MarqueeRow reverse />
-      </div>
-
-      {/* ── Centre greeting / percentage ── */}
-      <div className={styles.centre} suppressHydrationWarning>
+      <div className={styles.inner} suppressHydrationWarning>
         {phase === 'greeting' && (
           <span className={styles.word} key={index}>
             {greetings[index]}
@@ -120,13 +85,6 @@ export function SplashScreen() {
         )}
       </div>
 
-      {/* ── Bottom marquee rows ── */}
-      <div className={styles.marqueeGroup} data-pos="bottom">
-        <MarqueeRow reverse />
-        <MarqueeRow />
-      </div>
-
-      {/* ── Progress bar (greeting phase only) ── */}
       {phase === 'greeting' && (
         <div className={styles.bar}>
           <div

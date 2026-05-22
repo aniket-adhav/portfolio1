@@ -229,9 +229,12 @@
     }
 
     @media (--mediaMobile) {
+      position: relative;
+      bottom: auto;
       width: 100%;
-      bottom: 2%;
-      opacity: 1;
+      margin-top: var(--spaceM);
+      opacity: var(--opacity);
+      text-align: center;
     }
   }
 }
