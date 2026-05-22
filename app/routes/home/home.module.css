@@ -16,9 +16,11 @@
     padding-right: var(--spaceM);
 
     & > * {
-      width: 100%;
+      width: fit-content;
       justify-content: center;
       font-size: var(--fontSizeBodyM);
+      padding-left: var(--space2XL);
+      padding-right: var(--space2XL);
     }
   }
 }
