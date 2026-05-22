@@ -118,8 +118,8 @@ export function ProjectSummary({
             {!modelLoaded && (
               <Loader center className={styles.loader} data-visible={visible} />
             )}
-            {isHydrated && visible && (
-              <Suspense>
+            <Suspense>
+              {isHydrated && visible && (
                 <Model
                   alt={model.alt}
                   cameraPosition={{ x: 0, y: 0, z: 8 }}
@@ -136,8 +136,8 @@ export function ProjectSummary({
                     },
                   ]}
                 />
-              </Suspense>
-            )}
+              )}
+            </Suspense>
             {renderSvgText(visible, 'laptop')}
           </div>
         )}
@@ -146,8 +146,8 @@ export function ProjectSummary({
             {!modelLoaded && (
               <Loader center className={styles.loader} data-visible={visible} />
             )}
-            {isHydrated && visible && (
-              <Suspense>
+            <Suspense>
+              {isHydrated && visible && (
                 <Model
                   alt={model.alt}
                   cameraPosition={{ x: 0, y: 0, z: 11.5 }}
@@ -173,8 +173,8 @@ export function ProjectSummary({
                     },
                   ]}
                 />
-              </Suspense>
-            )}
+              )}
+            </Suspense>
             {renderSvgText(visible, 'phone')}
           </div>
         )}
