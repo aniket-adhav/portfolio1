@@ -32,7 +32,7 @@ const techRows = [
   ],
   // Row 3 — Libraries + Databases (8)
   [
-    { name: 'Retrofit',   icon: 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/retrofit.svg',                        url: 'https://square.github.io/retrofit/' },
+    { name: 'Retrofit',   icon: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2348B2A0'/%3E%3Cpath d='M7 6h6a3 3 0 0 1 0 6H7V6z' fill='white'/%3E%3Cpath d='M7 12h4l3.5 6' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E", url: 'https://square.github.io/retrofit/' },
     { name: 'Ktor',       icon: 'https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/ktor.svg',                            url: 'https://ktor.io' },
     { name: 'MongoDB',    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',             url: 'https://mongodb.com' },
     { name: 'MySQL',      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',                 url: 'https://mysql.com' },
