@@ -233,7 +233,7 @@
       bottom: auto;
       width: 100%;
       margin-top: var(--spaceM);
-      opacity: var(--opacity);
+      opacity: 1;
       text-align: center;
     }
   }
@@ -312,6 +312,11 @@
     transform: none;
     opacity: 1;
   }
+
+  @media (--mediaMobile) {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .button {
@@ -330,5 +335,17 @@
   &[data-visible='true'] {
     transform: none;
     opacity: 1;
+  }
+
+  @media (--mediaMobile) {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.indexNumber {
+  @media (--mediaMobile) {
+    opacity: 1;
+    transform: none;
   }
 }
